@@ -103,11 +103,11 @@ class StaticPageGenerator {
 			'tags' => $post['tags'],
 			'category' => $post['category'],
 			);
-		$this->addFileToList($this->public . $postUrl);
+		$this->addFileToList($postUrl);
 		$this->addPostToFacebookPoster( array(
 			'title' => $title,
 			'url' => $this->site['url'] . $postUrl,
-			'image' => $this->site['image_path'] . $post['image'],
+			'image' => $this->site['url'] . $post['image'],
 			'thumb' => $this->site['image_path']."thumb480x360.".$post['image'].".jpg",
 		));
 
@@ -152,7 +152,7 @@ class StaticPageGenerator {
 			$postResult = $this->renderFile($this->postFile, $vars);
 			echo ".";
 			$this->urlList[] = '/'.$post['file'];
-			file_put_contents("/". $post['file'], $postResult);
+			file_put_contents($this->public ."/". $post['file'], $postResult);
 		}
 		echo "Creating index.\n";
 		$this->generateIndex();
@@ -214,8 +214,8 @@ class StaticPageGenerator {
 
 			$renderResult = $this->renderFile($this->indexFile, $vars);
 
-			$this->addFileToList($this->public .'/'.$filename);
-			file_put_contents('/'.$filename, $renderResult);
+			$this->addFileToList('/'.$filename);
+			file_put_contents($this->public.'/'.$filename, $renderResult);
 
 		}
 	}
@@ -226,7 +226,7 @@ class StaticPageGenerator {
 		echo "Reading filelist\n";
 		while (!feof($this->fpFileList)) {
 			$file = trim(fgets($this->fpFileList));
-			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public.$file." s3://".$bucket.$file;
+			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$file." s3://".$bucket.$file;
 			echo $deployCmd."\n";
 			system($deployCmd);
 		}
