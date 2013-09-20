@@ -230,6 +230,7 @@ class StaticPageGenerator {
 			$renderResult = $this->renderFile($this->indexFile, $vars);
 
 			$this->addFileToList('/'.$filename);
+			$this->urlList[] = '/'.$filename;
 			file_put_contents($this->public.'/'.$filename, $renderResult);
 
 		}
