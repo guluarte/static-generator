@@ -23,9 +23,16 @@
 
   </nav>
 
-  <ul class="inline unstyled hidden-phone aligncenter">
+   <?php if ($post['tags']): ?>
+   <ul class="inline unstyled hidden-phone aligncenter">
+     <?php foreach($post['tags'] as $tag): ?>
+     <li>
+       <span class="btn-mini btn-info" type="button"><?php echo $tag; ?></span>
+     </li>
 
-  </ul>
+     <?php endforeach; ?>
+   </ul>
+   <?php endif; ?>
 
   <div class="aligncenter hidden-phone">
    <div class="fb-comments" data-href="<?php echo $site['url']; ?><?php echo $post['url']; ?>" data-num-posts="20" data-width="600" data-colorscheme="light"></div>

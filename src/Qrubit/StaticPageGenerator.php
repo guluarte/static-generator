@@ -88,9 +88,13 @@ class StaticPageGenerator {
 		if (strlen($slug) == 0) {
 			return;
 		}
+		if (!isset($post['tags'])) {
+			$post['tags'] = false;
+		}
 		$postFile = "page/".$slug.".html";
 		$postUrl = "/".$postFile;
 		$title = trim(htmlentities($post['title'], ENT_QUOTES, 'UTF-8'));
+
 		$this->posts[] = array(
 			'title' => $title,
 			'title_encode' => urlencode($post['title']),
