@@ -240,7 +240,7 @@ class StaticPageGenerator {
 		$dirs = array();
 		foreach ($files as $file) {
 			if ($file != "." && $file != "..") {
-				$file = $path . $file;
+				$file = $file;
 				if (is_dir($file)) {
 					$dirs[] = $file;
 				}
@@ -266,7 +266,7 @@ class StaticPageGenerator {
 		*/
 		$pageDirs = $this->getListDirs($this->public."/page/");
 		foreach ($pageDirs as $pageDir) {
-			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$pageDir."/* s3://".$bucket."/page/";
+			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/page/".$pageDir."/* s3://".$bucket."/page/".$pageDir."/";
 			echo $deployCmd."\n";
 			system($deployCmd);
 		}
