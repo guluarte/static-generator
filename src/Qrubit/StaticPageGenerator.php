@@ -28,6 +28,7 @@ class StaticPageGenerator {
 
 	private function setup() {
 		if ($this->rebuild) {
+			echo "Rebuilding\n";
 			$this->cleanPublicDir();
 		}
 		
