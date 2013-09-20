@@ -226,7 +226,7 @@ class StaticPageGenerator {
 		echo "Reading filelist\n";
 		while (!feof($this->fpFileList)) {
 			$file = trim(fgets($this->fpFileList));
-			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$file." s3://".$bucket.$file;
+			$deployCmd = "s3cmd put --acl-public --guess-mime-type -P ".$file." s3://".$bucket.$file;
 			echo $deployCmd."\n";
 			system($deployCmd);
 		}
