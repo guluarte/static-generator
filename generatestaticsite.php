@@ -3,9 +3,11 @@ require("bootstrap.php");
 
 $file = "lolzbook.json";
 $theme = "funny";
+$source = "./source";
+$public = "./public";
 
 $fp = fopen($file, 'r');
-$generator = new Qrubit\StaticPageGenerator('funny');
+$generator = new Qrubit\StaticPageGenerator('funny', $source, $public);
 $generator->setSiteAuthor("Funny Things");
 $generator->setSiteName("Funny Things 24/7");
 $generator->setSiteUrl("http://funnythings247.com");
@@ -29,5 +31,16 @@ while (!feof($fp)) {
 	
 }
 $generator->generate();
+
+deploy("funnythings247", $public);
+
+function deploy($bucket, $public) {
+	$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$public."/* s3://".$bucket."/ --exclude 'assets/'";
+	echo $deployCmd."\n";
+	system($deployCmd);
+	$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000'";
+	system($deployCmd);
+}
+
 echo "Done";
 
