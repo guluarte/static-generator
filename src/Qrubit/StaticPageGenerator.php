@@ -13,11 +13,13 @@ class StaticPageGenerator {
 	private $postUrls = array();
 	private $source;
 	private $public;
+	private $rebuild;
 
-	public function __construct($theme, $source = './source', $public = './public') {
+	public function __construct($theme, $source = './source', $public = './public', $rebuild = false) {
 		$this->theme = $theme;
 		$this->postFile = "./themes/".$this->theme."/post.php";
 		$this->indexFile = "./themes/".$this->theme."/index.php";
+		$this->rebuild = $rebuild;
 		$this->site['version'] = time();
 		$this->source = rtrim($source, '/');
 		$this->public = rtrim($public, '/');
@@ -25,7 +27,10 @@ class StaticPageGenerator {
 	}
 
 	private function setup() {
-		$this->cleanPublicDir();
+		if ($this->rebuild) {
+			$this->cleanPublicDir();
+		}
+		
 		@mkdir($this->public);
 		@mkdir($this->public."/page");
 		$copyCmd = "cp ".$this->source."/* ".$this->public."/ -r -u";
@@ -133,30 +138,35 @@ class StaticPageGenerator {
 	public function generate() {
 		echo "Generating ";
 		foreach ($this->posts as $id => $post) {
+			if (!file_exists($this->public ."/". $post['file'])) {
 			#Navigation
-			if ($id > 0) {
-				$prev = $this->posts[($id-1)];
-			} else {
-				$prev = false;
-			}
-			if (isset($this->posts[($id+1)])) {
-				$next = $this->posts[($id+1)];
-			} else {
-				$next = false;
-			}
+				if ($id > 0) {
+					$prev = $this->posts[($id-1)];
+				} else {
+					$prev = false;
+				}
+				if (isset($this->posts[($id+1)])) {
+					$next = $this->posts[($id+1)];
+				} else {
+					$next = false;
+				}
 
-			$randomPost = $this->getRandomPost(25);
-			$vars = array(
-				'site' => $this->site,
-				'post' => $post,
-				'random' => $randomPost,
-				'next' => $next,
-				'prev' => $prev,
-				);
-			$postResult = $this->renderFile($this->postFile, $vars);
-			echo ".";
-			$this->urlList[] = '/'.$post['file'];
-			file_put_contents($this->public ."/". $post['file'], $postResult);
+				$randomPost = $this->getRandomPost(25);
+				$vars = array(
+					'site' => $this->site,
+					'post' => $post,
+					'random' => $randomPost,
+					'next' => $next,
+					'prev' => $prev,
+					);
+				$postResult = $this->renderFile($this->postFile, $vars);
+				echo ".";
+				$this->urlList[] = '/'.$post['file'];
+
+				# code...
+
+				file_put_contents($this->public ."/". $post['file'], $postResult);
+			}
 		}
 		echo "Creating index.\n";
 		$this->generateIndex();
