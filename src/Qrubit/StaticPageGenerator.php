@@ -231,7 +231,7 @@ class StaticPageGenerator {
 			system($deployCmd);
 		}
 		$this->closeFileListHandler();
-		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000'  --add-header 'Content-Encoding: gzip'";
+		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000' ";
 		echo $deployCmd."\n";
 		system($deployCmd);
 
@@ -261,7 +261,7 @@ class StaticPageGenerator {
 
 	private function renderFile($file, $vars) {
 		extract($vars);
-		ob_start("ob_gzhandler");
+		ob_start();
 		include $file;
 		return ob_get_clean();
 	}	
