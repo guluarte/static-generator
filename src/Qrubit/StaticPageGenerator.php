@@ -46,7 +46,10 @@ class StaticPageGenerator {
 
 	}
 	private function closeFileListHandler() {
-		fclose($this->fpFileList);
+		if ($this->fpFileList) {
+			fclose($this->fpFileList);
+		}
+		
 	}
 	public function setSiteAuthor($author) {
 		$this->site['author'] = $author;
@@ -204,11 +207,16 @@ class StaticPageGenerator {
 		}
 	}
 	function deploy($bucket){
-		foreach ($this->urlList as $file) {
-			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public.$file." s3://".$bucket.$file;
+
+		$this->closeFileListHandler();
+		$this->fpFileList = fopen($this->public . "/.filelist", 'r');
+		echo "Reading filelist\n";
+		while (!feof($this->fpFileList)) {
+			$file = trim(fgets($this->fpFileList));
+			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$file." s3://".$bucket.$file;
 			echo $deployCmd."\n";
-			system($deployCmd);
 		}
+		$this->closeFileListHandler();
 		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000'";
 		echo $deployCmd."\n";
 		system($deployCmd);
