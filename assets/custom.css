@@ -1,0 +1,162 @@
+body {
+	background-color: #f4f4f4;
+}
+header {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.asidenav {
+	margin-bottom: 5px;
+}
+aside .asidenav {
+	margin: 0px;
+}
+.logo {
+	padding-left: 50px;
+	margin-top: 50px;
+}
+.sideads {
+	margin-left: auto;
+	margin-right: auto;
+}
+.media-list {
+	margin-top: 10px;
+}
+.media-body {
+	height:100px; line-height:100px;
+}
+.adtop {
+	margin-right: auto;
+	margin-left: auto;
+}
+.gallery-index img{
+	border: solid 3px transparent;
+	height: 150px;
+	width: 150px;
+}
+
+.morefun li{
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	
+}
+.affix-side-index {
+    position: fixed; 
+    top: 100px; 
+    left: 750px;
+}
+.morefun li {
+	text-align: center;
+}
+.maincontainer{
+	background-color: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	padding: 10px;
+}
+.maincontainer a {
+	color: #000;
+}
+section nav {
+	margin-bottom: 20px;
+}
+section nav .btn-primary{
+	color: #fff;
+}
+.maincontainer a:hover {
+	text-decoration: none;
+}
+.nav-prev {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: solid 1px #f4f4f4;
+}
+.thumbs-index img {
+	height: 150px;
+	width: 150px;
+}
+.thumbs-single-side img {
+	height: 95px;
+	width: 95px;
+}
+.thumbs-footer img {
+	height: 220px;
+	width: 220px;
+}
+.gallery {
+	margin-bottom: 5px;
+}
+.gallery li{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-top: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-bottom: 0px;
+}
+.gallery img {
+	display: block;
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-right: 0px;
+	padding-left: 0;
+	border: solid 3px transparent;
+}
+.menu ul {
+	margin-bottom: 0px;
+	height: 60px;
+}
+.menu ul li {
+	margin-right: auto;
+	margin-left: auto;
+	text-align:center;
+	vertical-align: center;
+	margin-top: 10px;
+	margin-right: 10px;
+}
+.menu a:hover {
+	text-decoration: none;
+}
+.gallery img:hover {
+	border-color: #0087F7;
+}
+.width940 {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 1140px;
+}
+#socialicons {
+	position: absolute;
+	top: 20%;
+	left: 0%;
+}
+.postimage {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+.addrelative {
+	position: relative;
+}
+.aligncenter {
+	margin-right: auto;
+	margin-left: auto;
+	text-align:center;
+}
+footer {
+
+}
+@media (min-width:800px) { 
+	.prev_btn {
+		position: absolute;
+		top: 20%;
+		left: 10%;
+	}
+	.next_btn {
+		position: absolute;
+		top: 20%;
+		right: 10%;
+	}
+}

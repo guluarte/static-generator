@@ -1,0 +1,8 @@
+{
+	"autoload": {
+		"psr-0": {"Qrubit\\": "src/"}
+		},
+		"require": {
+			"symfony/yaml": "2.2.*@dev"
+		}
+	}

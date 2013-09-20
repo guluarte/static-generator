@@ -1,0 +1,33 @@
+<?php
+require("bootstrap.php");
+
+$file = "lolzbook.json";
+$theme = "funny";
+
+$fp = fopen($file, 'r');
+$generator = new Qrubit\StaticPageGenerator('funny');
+$generator->setSiteAuthor("Funny Things");
+$generator->setSiteName("Funny Things 24/7");
+$generator->setSiteUrl("http://funnythings247.com");
+$generator->setSiteImagePath("http://funnythings247.com/images/");
+$cont = 0;
+while (!feof($fp)) {
+	$json = trim(fgets($fp));
+	$array = json_decode($json, true);
+	$post = array(
+		'title' => $array['title'],
+		'image' => $array['filename'],
+		'tags' =>  $array['categories'],
+		'category' => $array['categories'][0],
+		);
+	$generator->addPost($post);
+	echo "..";
+	$cont++;
+	if ($cont > 50) {
+		break;
+	}
+	
+}
+$generator->generate();
+echo "Done";
+
