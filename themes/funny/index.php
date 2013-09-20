@@ -11,8 +11,6 @@
 				<div class="aligncenter postimage">
 					<a href="<?php echo $post['url']; ?>"><img src="/images/<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>"/></a>
 				</div>
-				
-				<?php include(__DIR__."/share.php"); ?>
 
 			</article>
 			<!-- end body content -->
