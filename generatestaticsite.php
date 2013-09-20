@@ -23,7 +23,6 @@ while (!feof($fp)) {
 		'category' => $array['categories'][0],
 		);
 	$generator->addPost($post);
-	echo "..";
 	$cont++;
 	if ($cont > 50) {
 		//break;

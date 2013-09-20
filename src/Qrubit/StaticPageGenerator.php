@@ -106,7 +106,7 @@ class StaticPageGenerator {
 		return $randomPost;
 	}
 	public function generate() {
-
+		echo "Generating ";
 		foreach ($this->posts as $id => $post) {
 			#Navigation
 			if ($id > 0) {
@@ -129,9 +129,12 @@ class StaticPageGenerator {
 				'prev' => $prev,
 				);
 			$postResult = $this->renderFile($this->postFile, $vars);
+			echo ".";
 			file_put_contents("./public/". $post['file'], $postResult);
 		}
+		echo "Creating index.\n";
 		$this->generateIndex();
+		echo "\nDone\n";
 		
 	}
 	private function generateIndex() {
