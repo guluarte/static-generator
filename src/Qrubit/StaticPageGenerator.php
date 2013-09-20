@@ -4,6 +4,7 @@ class StaticPageGenerator {
 
 	private $posts = array();
 	private $site = array();
+	private $urlList = array();
 	private $theme;
 	private $postCount = 0;
 	private $postFile;
@@ -130,10 +131,13 @@ class StaticPageGenerator {
 				);
 			$postResult = $this->renderFile($this->postFile, $vars);
 			echo ".";
+			$this->urlList[] = '/'.$post['file'];
 			file_put_contents("./public/". $post['file'], $postResult);
 		}
 		echo "Creating index.\n";
 		$this->generateIndex();
+		echo "Creating sitemap.\n";
+		$this->generateSiteMap();
 		echo "\nDone\n";
 		
 	}
@@ -189,9 +193,21 @@ class StaticPageGenerator {
 				);
 
 			$renderResult = $this->renderFile($this->indexFile, $vars);
+
+			$this->urlList[] = '/'.$filename;
 			file_put_contents("./public/".$filename, $renderResult);
 
 		}
+	}
+
+	function generateSiteMap() {
+		$sitemap = "";
+		foreach ($this->urlList as $url) {
+			$sitemap .= $this->site['url'].$url."\n";
+		}
+		file_put_contents("./public/sitemap.txt", $sitemap);
+		unset($sitemap);
+		unset($this->urlList);
 	}
 	private function getNextPosts($amount, $offset) {
 		$posts = array();
