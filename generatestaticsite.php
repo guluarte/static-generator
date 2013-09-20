@@ -26,20 +26,11 @@ while (!feof($fp)) {
 	$generator->addPost($post);
 	$cont++;
 	if ($cont > 50) {
-		break;
+		//break;
 	}
 	
 }
 $generator->generate();
 $generator->deploy($bucket);
-//deploy("funnythings247.com", $public);
-
-function deploy($bucket, $public) {
-	$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$public."/* s3://".$bucket."/ --exclude 'assets/'";
-	system($deployCmd);
-	$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000'";
-	system($deployCmd);
-}
-
 echo "Done";
 
