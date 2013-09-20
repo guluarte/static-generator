@@ -200,7 +200,6 @@ private function generateIndex() {
 	}
 }
 function deploy($bucket){
-	system($deployCmd);
 	foreach ($this->urlList as $file) {
 		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public.$file." s3://".$bucket.$file;
 		echo $deployCmd."\n";
