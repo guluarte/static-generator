@@ -5,6 +5,7 @@ $file = "lolzbook.json";
 $theme = "funny";
 $source = "./source";
 $public = "./public";
+$bucket = "funnythings247.com";
 
 $fp = fopen($file, 'r');
 $generator = new Qrubit\StaticPageGenerator('funny', $source, $public);
