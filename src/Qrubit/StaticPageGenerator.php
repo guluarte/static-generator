@@ -109,7 +109,7 @@ class StaticPageGenerator {
 			'url' => $this->site['url'] . $postUrl,
 			'image' => $this->site['url'] . $post['image'],
 			'thumb' => $this->site['image_path']."thumb480x360.".$post['image'].".jpg",
-		));
+			));
 
 	}
 	private function getNumPosts() {
@@ -231,6 +231,10 @@ class StaticPageGenerator {
 			system($deployCmd);
 		}
 		$this->closeFileListHandler();
+		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/page/* s3://".$bucket."/page/";
+		//echo $deployCmd."\n";
+		//system($deployCmd);
+
 		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000' ";
 		echo $deployCmd."\n";
 		system($deployCmd);
