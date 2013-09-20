@@ -5,6 +5,7 @@ class StaticPageGenerator {
 	private $posts = array();
 	private $site = array();
 	private $fpFileList = false;
+	private $facebookFile = false;
 	private $theme;
 	private $postCount = 0;
 	private $postFile;
@@ -43,7 +44,12 @@ class StaticPageGenerator {
 			$this->fpFileList = fopen($this->public . "/.filelist", 'w+');
 		}
 		fwrite($this->fpFileList, $filename . PHP_EOL);
-
+	}
+	private function addPostToFacebookPoster($post) {
+		if ($this->facebookFile === false) {
+			$this->facebookFile = fopen($this->public . "/facebook.posts", 'w+');
+		}
+		fwrite($this->facebookFile, json_encode($post) . PHP_EOL);		
 	}
 	private function closeFileListHandler() {
 		if ($this->fpFileList) {
@@ -84,8 +90,9 @@ class StaticPageGenerator {
 		}
 		$postFile = "page/".$slug.".html";
 		$postUrl = "/".$postFile;
+		$title = trim(htmlentities($post['title'], ENT_QUOTES, 'UTF-8'));
 		$this->posts[] = array(
-			'title' => trim(htmlentities($post['title'], ENT_QUOTES, 'UTF-8')),
+			'title' => $title,
 			'title_encode' => urlencode($post['title']),
 			'url' => $postUrl,
 			'url_encode' => urlencode( $postUrl ),
@@ -97,6 +104,12 @@ class StaticPageGenerator {
 			'category' => $post['category'],
 			);
 		$this->addFileToList($this->public . $postUrl);
+		$this->addPostToFacebookPoster( array(
+			'title' => $title,
+			'url' => $this->site['url'] . $postUrl,
+			'image' => $this->site['url'] . $post['image'],
+			'thumb' => $this->site['image_path']."thumb480x360.".$post['image'].".jpg",
+		));
 
 	}
 	private function getNumPosts() {
