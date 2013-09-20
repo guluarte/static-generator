@@ -215,6 +215,7 @@ class StaticPageGenerator {
 			$file = trim(fgets($this->fpFileList));
 			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$file." s3://".$bucket.$file;
 			echo $deployCmd."\n";
+			system($deployCmd);
 		}
 		$this->closeFileListHandler();
 		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000'";
