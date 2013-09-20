@@ -208,7 +208,7 @@ function deploy($bucket){
 	$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000'";
 	echo $deployCmd."\n";
 	
-	$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$public."/* s3://".$bucket."/ --exclude='assets/' --exclude='page/'";
+	$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/* s3://".$bucket."/ --exclude='assets/' --exclude='page/'";
 	echo $deployCmd."\n";
 }
 function generateSiteMap() {
