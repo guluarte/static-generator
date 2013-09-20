@@ -26,7 +26,7 @@ while (!feof($fp)) {
 	echo "..";
 	$cont++;
 	if ($cont > 50) {
-		break;
+		//break;
 	}
 	
 }
