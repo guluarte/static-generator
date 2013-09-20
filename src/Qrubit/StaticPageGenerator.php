@@ -241,7 +241,7 @@ class StaticPageGenerator {
 		foreach ($files as $file) {
 			if ($file != "." && $file != "..") {
 				$file = $file;
-				if (is_dir($file)) {
+				if (is_dir($path . $file)) {
 					$dirs[] = $file;
 				}
 			}
