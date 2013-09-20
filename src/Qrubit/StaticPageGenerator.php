@@ -222,6 +222,7 @@ class StaticPageGenerator {
 	function deploy($bucket){
 
 		$this->closeFileListHandler();
+		/*
 		$this->fpFileList = fopen($this->public . "/.filelist", 'r');
 		echo "Reading filelist\n";
 		while (!feof($this->fpFileList)) {
@@ -231,9 +232,10 @@ class StaticPageGenerator {
 			system($deployCmd);
 		}
 		$this->closeFileListHandler();
+		*/
 		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/page/* s3://".$bucket."/page/";
-		//echo $deployCmd."\n";
-		//system($deployCmd);
+		echo $deployCmd."\n";
+		system($deployCmd);
 
 		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000' ";
 		echo $deployCmd."\n";
