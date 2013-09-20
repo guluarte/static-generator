@@ -32,7 +32,7 @@ while (!feof($fp)) {
 }
 $generator->generate();
 
-deploy("funnythings247", $public);
+deploy("funnythings247.com", $public);
 
 function deploy($bucket, $public) {
 	$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$public."/* s3://".$bucket."/ --exclude 'assets/'";
