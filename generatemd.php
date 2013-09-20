@@ -1,7 +1,8 @@
 <?php
-include('./vendor/autoload.php');
+include('./bootstrap.php');
 
 use Symfony\Component\Yaml\Yaml;
+
 
 $file = "lolzbook.json";
 $fp = fopen($file, 'r');
