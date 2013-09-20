@@ -40,7 +40,7 @@ class StaticPageGenerator {
 
 	private function addFileToList($filename) {
 		if ($this->fpFileList === false) {
-			$this->fpFileList = fopen($this->public"/.filelist", 'w+');
+			$this->fpFileList = fopen($this->public . "/.filelist", 'w+');
 		}
 		fwrite($this->fpFileList, $filename . PHP_EOL);
 
