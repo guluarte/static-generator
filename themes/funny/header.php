@@ -12,7 +12,7 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
       <!-- styles -->
-      <link href="/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css?version=<?php echo $site['version'];?>" rel="stylesheet">
+      <link href="/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css?version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" >
       <link href="/assets/themes/twitter/css/style.css?body=1&version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" media="all">
       <link rel="shortcut icon" href="/favicon.ico?version=<?php echo $site['version'];?>">
       <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
@@ -26,7 +26,7 @@
       <meta property="og:type" content="blog"/>
       <meta property="fb:admins" content="547998939"/>
       <!-- end facebook metatags -->
-      <link href="/assets/custom.css?version=<?php echo $site['version'];?>" rel="stylesheet">
+      <link href="/assets/custom.css?version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" >
 
     </head>
 
