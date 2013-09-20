@@ -251,29 +251,13 @@ class StaticPageGenerator {
 		return $dirs;
 	}
 	public function deploy($bucket){
-
 		$this->closeFileListHandler();
-		/*
-		$this->fpFileList = fopen($this->public . "/.filelist", 'r');
-		echo "Reading filelist\n";
-		while (!feof($this->fpFileList)) {
-			$file = trim(fgets($this->fpFileList));
-			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public.$file." s3://".$bucket.$file;
-			echo $deployCmd."\n";
-			system($deployCmd);
-		}
-		$this->closeFileListHandler();
-		*/
 		$pageDirs = $this->getListDirs($this->public."/page/");
 		foreach ($pageDirs as $pageDir) {
 			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/page/".$pageDir."/* s3://".$bucket."/page/".$pageDir."/";
 			echo $deployCmd."\n";
 			system($deployCmd);
 		}
-		#$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/page/* s3://".$bucket."/page/";
-		#echo $deployCmd."\n";
-		#system($deployCmd);
-
 
 		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000' ";
 		echo $deployCmd."\n";
@@ -283,7 +267,7 @@ class StaticPageGenerator {
 		echo $deployCmd."\n";
 		system($deployCmd);
 	}
-	function generateSiteMap() {
+	private function generateSiteMap() {
 		$sitemap = "";
 		foreach ($this->urlList as $url) {
 			$sitemap .= $this->site['url'].$url."\n";
