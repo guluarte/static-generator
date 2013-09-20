@@ -98,7 +98,7 @@ class StaticPageGenerator {
 			$post['tags'] = false;
 		}
 		$postFolder = 'page/'.base_convert(mt_rand(0,100), 10, 32);
-		mkdir($this->public.'/'.$postFolder);
+		@mkdir($this->public.'/'.$postFolder);
 		$postFile = $postFolder."/".$slug.".html";
 		$postUrl = "/".$postFile;
 		$title = trim(htmlentities($post['title'], ENT_QUOTES, 'UTF-8'));
