@@ -1,13 +1,5 @@
----
-# Remember to set production_url in your _config.yml file!
-title : robots
----
 User-agent: *
 Disallow: /cgi-bin/
 Disallow: /assets/
 Disallow: /404.html
-Disallow: /index.md
-Disallow: /changelog.md
-Disallow: /pages.html
-Disallow: /archive.html
-Sitemap: {{site.production_url}}/sitemap.txt
+Sitemap: http://funnythings247.com/sitemap.txt
