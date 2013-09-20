@@ -107,7 +107,7 @@ class StaticPageGenerator {
 		$this->addPostToFacebookPoster( array(
 			'title' => $title,
 			'url' => $this->site['url'] . $postUrl,
-			'image' => $this->site['url'] . $post['image'],
+			'image' => $this->site['image_path'] . $post['image'],
 			'thumb' => $this->site['image_path']."thumb480x360.".$post['image'].".jpg",
 		));
 
