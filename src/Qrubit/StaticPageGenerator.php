@@ -96,7 +96,9 @@ class StaticPageGenerator {
 		if (!isset($post['tags'])) {
 			$post['tags'] = false;
 		}
-		$postFile = "page/".$slug.".html";
+		$postFolder = 'page/'.base_convert(mt_rand(0,100), 10, 32);
+		@mkdir($this->public.'/'.$postFolder);
+		$postFile = $postFolder."/".$slug.".html";
 		$postUrl = "/".$postFile;
 		$title = trim(htmlentities($post['title'], ENT_QUOTES, 'UTF-8'));
 
@@ -161,9 +163,6 @@ class StaticPageGenerator {
 					);
 				$postResult = $this->renderFile($this->postFile, $vars);
 				echo ".";
-				
-
-				# code...
 
 				file_put_contents($this->public ."/". $post['file'], $postResult);
 			}

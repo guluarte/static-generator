@@ -8,7 +8,7 @@ $public = "./public";
 $bucket = "funnythings247.com";
 
 $fp = fopen($file, 'r');
-$generator = new Qrubit\StaticPageGenerator('funny', $source, $public, false);
+$generator = new Qrubit\StaticPageGenerator('funny', $source, $public, true);
 $generator->setSiteAuthor("Funny Things");
 $generator->setSiteName("Funny Things 24/7");
 $generator->setSiteUrl("http://funnythings247.com");
