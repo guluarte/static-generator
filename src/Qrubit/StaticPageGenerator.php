@@ -338,7 +338,7 @@ class StaticPageGenerator {
 		$deployCmds .= $deployCmd."\n";
 		#system($deployCmd);
 
-		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/* s3://".$bucket."/ --exclude='assets/*' --exclude='page/*'";
+		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/* s3://".$bucket."/ --exclude='assets/*' --exclude='page/*' --exclude='images/*'";
 		echo $deployCmd."\n";
 		$deployCmds .= $deployCmd."\n";
 		#system($deployCmd);
