@@ -37,5 +37,5 @@ while (!feof($fp)) {
 
 $generator->generate();
 $generator->deploy($bucket);
-echo "Done";
+echo "Done.\n Run ./deploy.sh\n";
 

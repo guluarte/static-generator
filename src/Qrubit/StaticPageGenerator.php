@@ -123,7 +123,9 @@ class StaticPageGenerator {
 		if (!isset($post['tags'])) {
 			$post['tags'] = false;
 		}
-		$postFolder = 'page/'.base_convert(mt_rand(0,100), 10, 32);
+
+		$postFolder = 'page/'.substr( preg_replace('/[^A-Za-z0-9]/', '', $slug) , 0, 2);
+
 		@mkdir($this->public.'/'.$postFolder);
 		$postFile = $postFolder."/".$slug.".html";
 		$postUrl = "/".$postFile;
