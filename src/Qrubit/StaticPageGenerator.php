@@ -51,9 +51,9 @@ class StaticPageGenerator {
 	public function addCustomFiles($themeFile, $filename, $meta) {
 		$this->customFiles[] = array(
 			'themeFile' => "./themes/".$this->theme."/".$themeFile,
-		 	'filename' => $filename,
-		 	'meta' => $meta,
-		 	);
+			'filename' => $filename,
+			'meta' => $meta,
+			);
 	}
 
 	private function renderCustomFiles() {
@@ -172,10 +172,22 @@ class StaticPageGenerator {
 		return $this->postCount-1;
 	}
 	private function getRandomPost($num) {
+		#Not enough posts so we return the same 
+		if ($this->getNumPosts() < 50) {
+			return $this->posts;
+		}
 		$randomPost = array();
+		$rndNumbers = array();
 		for ($i=0; $i < $num; $i++) {
-			$rndNumber = mt_rand(0, $this->getNumPosts()); 
+			do {
+				$rndNumber = mt_rand(0, $this->getNumPosts());
+				
+			} while(!array_key_exists($rndNumber, $rndNumbers) );
+
+			
+			$rndNumbers[$rndNumber] = $rndNumber; 
 			$randomPost[] = $this->posts[$rndNumber];
+			
 		}
 		return $randomPost;
 	}
