@@ -234,7 +234,12 @@ class StaticPageGenerator {
 	private function generateIndex() {
 		$numPost = $this->getNumPosts();
 		$numPostPerPage = 10;
-		$numPages = round( ($numPost / $numPostPerPage), 0);
+
+		$numPages = round( ($numPost / $numPostPerPage), 0) + 1;
+		if ( ($numPost % $numPostPerPage) > 0 ) {
+			$numPages++;
+		}
+		
 		$prev = array();
 		$next = array();
 		for ($i=0; $i < $numPages; $i++) { 

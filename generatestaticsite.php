@@ -1,6 +1,7 @@
 <?php
 require("bootstrap.php");
 
+
 $file = "lolzbook.json";
 $theme = "funny";
 $source = "./source";
