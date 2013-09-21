@@ -25,7 +25,7 @@
       if(isset($post['image'])):
           $image = $site['image_path']."thumb480x360.".$post['image'].".jpg";
         else: 
-          $image = $site['image_path']."default.jpg?version=<?php echo $site['version'];?>";
+          $image = $site['image_path']."default.jpg?version=".$site['version'];
         endif; 
       ?>
       <meta property="og:image" content="<?php echo $image; ?>"/>
