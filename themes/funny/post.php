@@ -9,7 +9,7 @@
           <img src="/images/<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>"/>
         </div>
 
-    <?php include(__DIR__."/share.php"); ?>
+        <?php include(__DIR__."/share.php"); ?>
       </article>
       <nav class="aligncenter">
         <?php if ($prev): ?>
@@ -23,22 +23,22 @@
 
   </nav>
 
-   <?php if ($post['tags']): ?>
-   <ul class="inline unstyled hidden-phone aligncenter">
-     <?php foreach($post['tags'] as $tag): ?>
-     <li>
-       <span class="btn-mini btn-info" type="button"><?php echo $tag; ?></span>
-     </li>
+  <?php if ($post['tags']): ?>
+  <ul class="inline unstyled hidden-phone aligncenter">
+   <?php foreach($post['tags'] as $tag): ?>
+   <li>
+     <span class="btn-mini btn-info" type="button"><?php echo $tag; ?></span>
+   </li>
 
-     <?php endforeach; ?>
-   </ul>
-   <?php endif; ?>
+ <?php endforeach; ?>
+</ul>
+<?php endif; ?>
 
-  <div class="aligncenter hidden-phone">
-   <div class="fb-comments" data-href="<?php echo $site['url']; ?><?php echo $post['url']; ?>" data-num-posts="20" data-width="600" data-colorscheme="light"></div>
- </div>
+<div class="aligncenter hidden-phone">
+ <div class="fb-comments" data-href="<?php echo $site['url']; ?><?php echo $post['url']; ?>" data-num-posts="20" data-width="600" data-colorscheme="light"></div>
+</div>
 
- <!-- end body content -->
+<!-- end body content -->
 </section>
 
 <aside class="span4">
@@ -91,7 +91,13 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
    <a href="<?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>"/></a>
  </li>
 <?php endfor; ?>
-
+<ul class="unstyled inline gallery thumbs-single-side aligncenter hidden-phone">
+  <?php for ($i=0; $i < 3; $i++): ?>
+  <?php $lastestPost = next($lastestPosts); ?>
+  <li>
+   <a href="<?php echo $lastestPost['url'] ?>"><img src="/images/thumb.<?php echo $lastestPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>"/></a>
+ </li>
+<?php endfor; ?>
 </ul>
 <!-- end related posts -->
 </aside>

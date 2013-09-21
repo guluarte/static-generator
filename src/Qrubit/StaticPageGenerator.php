@@ -3,6 +3,7 @@ namespace Qrubit;
 class StaticPageGenerator {
 
 	private $posts = array();
+	private $lastestPosts = false;
 	private $site = array();
 	private $fpFileList = false;
 	private $facebookFile = false;
@@ -14,6 +15,7 @@ class StaticPageGenerator {
 	private $source;
 	private $public;
 	private $rebuild;
+
 
 	public function __construct($theme, $source = './source', $public = './public', $rebuild = false) {
 		$this->theme = $theme;
@@ -124,6 +126,13 @@ class StaticPageGenerator {
 			));
 
 	}
+	private function getLastestPosts() {
+		if ( is_array($this->lastestPosts) ) {
+			return $this->lastestPosts;
+		}
+
+		$this->lastestPosts = array_slice($this->posts, 0, 10);
+	}
 	private function getNumPosts() {
 		if ($this->postCount == 0) {
 			$this->postCount = count($this->posts);
@@ -155,11 +164,13 @@ class StaticPageGenerator {
 				}
 
 				$randomPost = $this->getRandomPost(30);
+				$lastestPosts = $this->getLastestPosts();
 
 				$vars = array(
 					'site' => $this->site,
 					'post' => $post,
 					'random' => $randomPost,
+					'lastestPosts' => $lastestPosts,
 					'next' => $next,
 					'prev' => $prev,
 					);
