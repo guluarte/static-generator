@@ -132,6 +132,8 @@ class StaticPageGenerator {
 		}
 
 		$this->lastestPosts = array_slice($this->posts, 0, 10);
+
+		return $this->lastestPosts;
 	}
 	private function getNumPosts() {
 		if ($this->postCount == 0) {
