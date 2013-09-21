@@ -15,9 +15,11 @@
       <link href="/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css?version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" >
       <link href="/assets/themes/twitter/css/style.css?body=1&version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" media="all">
       <link rel="shortcut icon" href="/favicon.ico?version=<?php echo $site['version'];?>">
+     
       <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
       <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png">
       <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png">
+     
       <!-- Facebook metatags -->
       <?php 
       if(isset($post['image'])):
