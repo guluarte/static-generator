@@ -13,6 +13,10 @@ $generator->setSiteAuthor("Funny Things");
 $generator->setSiteName("Funny Things 24/7");
 $generator->setSiteUrl("http://funnythings247.com");
 $generator->setSiteImagePath("http://funnythings247.com/images/");
+
+$generator->addCustomFiles('privacy.php', 'privacy.html', array(
+	'title' => "Privacy Policy",
+));
 $cont = 0;
 while (!feof($fp)) {
 	$json = trim(fgets($fp));
@@ -25,8 +29,8 @@ while (!feof($fp)) {
 		);
 	$generator->addPost($post);
 	$cont++;
-	if ($cont > 150) {
-		//break;
+	if ($cont > 20) {
+		break;
 	}
 	
 }

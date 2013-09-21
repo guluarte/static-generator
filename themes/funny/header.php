@@ -19,7 +19,14 @@
       <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png">
       <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png">
       <!-- Facebook metatags -->
-      <meta property="og:image" content="<?php echo $site['image_path']; ?>thumb480x360.<?php echo $post['image']; ?>.jpg"/>
+      <?php 
+      if(isset($post['image'])):
+          $image = $site['image_path']."thumb480x360.".$post['image'].".jpg";
+        else: 
+          $image = $site['image_path']."default.jpg";
+        endif; 
+      ?>
+      <meta property="og:image" content="<?php echo $image; ?>"/>
       <meta property="og:title" content="<?php echo $post['title']; ?>"/>
       <meta property="og:url" content="<?php echo $site['url']; ?><?php echo $post['url']; ?>"/>
       <meta property="og:site_name" content="<?php echo $site['name']; ?>"/>

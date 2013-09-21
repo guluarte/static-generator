@@ -15,6 +15,7 @@ class StaticPageGenerator {
 	private $source;
 	private $public;
 	private $rebuild;
+	private $customFiles;
 
 
 	public function __construct($theme, $source = './source', $public = './public', $rebuild = false) {
@@ -44,6 +45,29 @@ class StaticPageGenerator {
 		if (is_dir($this->public) && isset($this->public)) {
 			$rmCmd = "rm ".$this->public."/* -fr";
 			system($rmCmd);
+		}
+	}
+
+	public function addCustomFiles($themeFile, $filename, $meta) {
+		$this->customFiles[] = array(
+			'themeFile' => "./themes/".$this->theme."/".$themeFile,
+		 	'filename' => $filename,
+		 	'meta' => $meta,
+		 	);
+	}
+
+	private function renderCustomFiles() {
+
+		foreach ($this->customFiles as $customFile) {
+
+			$customFile['meta']['url'] = '/'.$customFile['filename'];
+			$vars = array(
+				'site' => $this->site,
+				'post' => $customFile['meta'],
+				);
+			$this->createFile($customFile['filename'], $customFile['themeFile'], $vars);
+			$this->urlList[] = $customFile['meta']['url'];
+			$this->addFileToList($customFile['meta']['url']);
 		}
 	}
 
@@ -126,6 +150,10 @@ class StaticPageGenerator {
 			));
 
 	}
+	private function createFile($file, $themeFile, $vars) {
+		$renderResult = $this->renderFile($themeFile, $vars);
+		file_put_contents($this->public ."/". $file, $renderResult);
+	}
 	private function getLastestPosts() {
 		if ( is_array($this->lastestPosts) ) {
 			return $this->lastestPosts;
@@ -175,16 +203,16 @@ class StaticPageGenerator {
 					'lastestPosts' => $lastestPosts,
 					'next' => $next,
 					'prev' => $prev
-,					);
-				$postResult = $this->renderFile($this->postFile, $vars);
-				echo ".";
-
-				file_put_contents($this->public ."/". $post['file'], $postResult);
+					,					
+					);
+				$this->createFile($post['file'], $this->postFile, $vars);
 			}
 			$this->urlList[] = '/'.$post['file'];
 		}
 		echo "Creating index.\n";
 		$this->generateIndex();
+		echo "Adding custom files\n";
+		$this->renderCustomFiles();
 		echo "Creating sitemap.\n";
 		$this->generateSiteMap();
 		echo "\nDone\n";
@@ -241,11 +269,11 @@ class StaticPageGenerator {
 				'prev' => $prev,
 				);
 
-			$renderResult = $this->renderFile($this->indexFile, $vars);
-
 			$this->addFileToList('/'.$filename);
 			$this->urlList[] = '/'.$filename;
-			file_put_contents($this->public.'/'.$filename, $renderResult);
+
+
+			$this->createFile($filename, $this->indexFile, $vars);
 
 		}
 	}
@@ -269,26 +297,22 @@ class StaticPageGenerator {
 		$this->closeFileListHandler();
 		$pageDirs = $this->getListDirs($this->public."/page/");
 		foreach ($pageDirs as $pageDir) {
-			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P --add-header 'Content-Encoding: gzip' ".$this->public."/page/".$pageDir."/* s3://".$bucket."/page/".$pageDir."/";
+			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/page/".$pageDir."/* s3://".$bucket."/page/".$pageDir."/";
 			echo $deployCmd."\n";
 			$deployCmds .= $deployCmd."\n";
-			system($deployCmd);
+			#system($deployCmd);
 		}
 
 		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000' ";
 		echo $deployCmd."\n";
 		$deployCmds .= $deployCmd."\n";
-		system($deployCmd);
+		#system($deployCmd);
 
-		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/* s3://".$bucket."/ --exclude='assets/*' --exclude='page/*' --exclude='*.html'";
+		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/* s3://".$bucket."/ --exclude='assets/*' --exclude='page/*'";
 		echo $deployCmd."\n";
 		$deployCmds .= $deployCmd."\n";
-		system($deployCmd);
+		#system($deployCmd);
 
-		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P  --add-header 'Content-Encoding: gzip' ".$this->public."/*.html s3://".$bucket."/ --exclude='assets/*' --exclude='page/*' --exclude='*.txt'";
-		echo $deployCmd."\n";
-		$deployCmds .= $deployCmd."\n";
-		system($deployCmd);
 
 		file_put_contents("./deploy.sh", $deployCmds);
 		chmod("./deploy.sh", "0755");
@@ -315,7 +339,7 @@ class StaticPageGenerator {
 
 	private function renderFile($file, $vars) {
 		extract($vars);
-		ob_start("ob_gzhandler");
+		ob_start();
 		include $file;
 		return ob_get_clean();
 	}	
