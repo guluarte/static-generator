@@ -16,6 +16,7 @@ class StaticPageGenerator {
 	private $public;
 	private $rebuild;
 	private $customFiles;
+	private $randomize = false;
 
 
 	public function __construct($theme, $source = './source', $public = './public', $rebuild = false) {
@@ -109,6 +110,9 @@ class StaticPageGenerator {
 			return true;
 		}
 	}
+	public function setRandomize() {
+		$this->randomize = true;
+	} 
 	public function addPost($post) {
 		if (!$this->isValidPost($post)) {
 			return;
@@ -190,8 +194,16 @@ class StaticPageGenerator {
 		}
 		return $randomPost;
 	}
+	private function randomizePosts() {
+		echo "Shuffling.\n";
+		shuffle($this->posts);
+	}
+
 	public function generate() {
-		echo "Generating ";
+		echo "Generating.\n";
+		if ($this->randomize === true) {
+			$this->randomizePosts();
+		}
 		foreach ($this->posts as $id => $post) {
 			if (!file_exists($this->public ."/". $post['file'])) {
 			#Navigation

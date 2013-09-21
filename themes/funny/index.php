@@ -17,11 +17,8 @@
 		<?php endforeach; ?>
 
 
-	</section>
-
-	<aside class="span5 hidden-phone pull-right">
 		<!-- Pagination links -->
-		<ul class="pager asidenav">
+		<ul class="pager">
 			<?php if($prev): ?>
 			<li>
 				<a href="<? echo $prev['url']; ?>">&larr; Older</a>
@@ -33,6 +30,32 @@
 	<?php endif; ?>
 
 	<?php if($next): ?>
+	<li>
+		<a href="<? echo $next['url']; ?>">Newer &rarr;</a>
+	</li>
+<?php else: ?>
+	<li class="disabled">
+		<a href="#">Newer &rarr;</a>
+	</li>
+<?php endif; ?>
+
+</ul>
+</section>
+
+<aside class="span5 hidden-phone pull-right">
+	<!-- Pagination links -->
+	<ul class="pager asidenav">
+		<?php if($prev): ?>
+		<li>
+			<a href="<? echo $prev['url']; ?>">&larr; Older</a>
+		</li>
+	<?php else: ?>
+	<li class="disabled">
+		<a href="#">&larr; Older</a>
+	</li>
+<?php endif; ?>
+
+<?php if($next): ?>
 	<li>
 		<a href="<? echo $next['url']; ?>">Newer &rarr;</a>
 	</li>
@@ -82,27 +105,4 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
 </div>
 
 
-<!-- Pagination links -->
-<ul class="pager">
-			<?php if($prev): ?>
-			<li>
-				<a href="<? echo $prev['url']; ?>">&larr; Older</a>
-			</li>
-		<?php else: ?>
-		<li class="disabled">
-			<a href="#">&larr; Older</a>
-		</li>
-	<?php endif; ?>
-
-	<?php if($next): ?>
-	<li>
-		<a href="<? echo $next['url']; ?>">Newer &rarr;</a>
-	</li>
-<?php else: ?>
-	<li class="disabled">
-		<a href="#">Newer &rarr;</a>
-	</li>
-<?php endif; ?>
-
-</ul>
 <?php include(__DIR__."/footer.php"); ?>

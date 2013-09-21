@@ -18,6 +18,8 @@ $generator->setSiteImagePath("http://funnythings247.com/images/");
 $generator->addCustomFiles('privacy.php', 'privacy.html', array(
 	'title' => "Privacy Policy",
 ));
+
+$generator->setRandomize();
 $cont = 0;
 while (!feof($fp)) {
 	$json = trim(fgets($fp));
@@ -31,7 +33,7 @@ while (!feof($fp)) {
 	$generator->addPost($post);
 	$cont++;
 	if ($cont > 200) {
-		//break;
+		break;
 	}
 	
 }
