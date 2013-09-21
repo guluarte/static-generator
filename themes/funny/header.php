@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
   <meta charset="utf-8">
   <title><?php echo $post['title']; ?></title>
@@ -29,12 +29,18 @@
           $image = $site['url']."/assets/images/default.jpg?version=".$site['version'];
         endif; 
       ?>
+
       <meta property="og:image" content="<?php echo $image; ?>"/>
       <meta property="og:title" content="<?php echo $post['title']; ?>"/>
+      <meta property="og:description" content="<?php echo $post['title']; ?>" ?>
       <meta property="og:url" content="<?php echo $site['url']; ?><?php echo $post['url']; ?>"/>
       <meta property="og:site_name" content="<?php echo $site['name']; ?>"/>
-      <meta property="og:type" content="blog"/>
+      <meta property="og:type" content="website"/>
       <meta property="fb:admins" content="547998939, 100004691232252"/>
+      <meta property="fb:page_id" content="165172277018867" />
+      <meta property="fb:app_id" content="583195078383535" />
+
+
       <!-- end facebook metatags -->
       <link href="/assets/custom.css?version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" >
 
