@@ -33,7 +33,7 @@
       <meta property="og:url" content="<?php echo $site['url']; ?><?php echo $post['url']; ?>"/>
       <meta property="og:site_name" content="<?php echo $site['name']; ?>"/>
       <meta property="og:type" content="blog"/>
-      <meta property="fb:admins" content="547998939"/>
+      <meta property="fb:admins" content="547998939, 100004691232252"/>
       <!-- end facebook metatags -->
       <link href="/assets/custom.css?version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" >
 
