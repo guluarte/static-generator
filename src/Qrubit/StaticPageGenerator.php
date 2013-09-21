@@ -287,7 +287,6 @@ class StaticPageGenerator {
 			$post = array(
 				'title' => $this->site['name'],
 				'url' => '/'.$filename,
-				'image' => 'default.jpg',
 				);
 
 			$vars = array(
