@@ -99,7 +99,7 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
 <div class="row-fluid hidden-phone">
  <h2>More fun</h2>
 </div>
-<?php for ($i=0; $i < 1; $i++): ?>
+<?php for ($i=0; $i < 2; $i++): ?>
   <div class="row-fluid hidden-phone"> 
     <ul class="gallery thumbs-footer unstyled inline aligncenter">
       <?php for ($j=0; $j < 4; $j++): ?>
@@ -114,19 +114,6 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
   </ul>
 </div>
 <?php endfor; ?>
-<div class="row-fluid hidden-phone"> 
-  <ul class="gallery thumbs-footer unstyled inline aligncenter">
-    <?php for ($j=0; $j < 4; $j++): ?>
-    <?php $lastestPost = next($lastestPosts); ?>
-    <li class="span3">
-      <a href="<?php echo $lastestPost['url']; ?>"><img src="/images/thumb.<?php echo $lastestPost['image']; ?>.jpg" alt="<?php echo $randomPost['title']; ?>"/></a>
-
-      <p><strong><?php echo $lastestPost['title']; ?></strong></p>
-
-    </li>
-  <?php endfor; ?>
-</ul>
-</div>
 <!-- end related posts -->
 </div>
 </div>
