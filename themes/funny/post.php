@@ -86,9 +86,9 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
 <!-- First Row of Thumbs -->
 <ul class="unstyled inline gallery thumbs-single-side aligncenter hidden-phone">
   <?php for ($i=0; $i < 3; $i++): ?>
-  <?php $lastestPost = next($lastestPosts); ?>
+  <?php $randomPost = next($random); ?>
   <li>
-   <a href="<?php echo $lastestPost['url'] ?>"><img src="/images/thumb.<?php echo $lastestPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>"/></a>
+   <a href="<?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>"/></a>
  </li>
 <?php endfor; ?>
 </ul>
@@ -114,18 +114,18 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
   </ul>
 </div>
 <?php endfor; ?>
-  <div class="row-fluid hidden-phone"> 
-    <ul class="gallery thumbs-footer unstyled inline aligncenter">
-      <?php for ($j=0; $j < 4; $j++): ?>
-      <?php $lastestPost = next($lastestPosts); ?>
-      <li class="span3">
-        <a href="<?php echo $lastestPost['url']; ?>"><img src="/images/thumb.<?php echo $lastestPost['image']; ?>.jpg" alt="<?php echo $randomPost['title']; ?>"/></a>
+<div class="row-fluid hidden-phone"> 
+  <ul class="gallery thumbs-footer unstyled inline aligncenter">
+    <?php for ($j=0; $j < 4; $j++): ?>
+    <?php $lastestPost = next($lastestPosts); ?>
+    <li class="span3">
+      <a href="<?php echo $lastestPost['url']; ?>"><img src="/images/thumb.<?php echo $lastestPost['image']; ?>.jpg" alt="<?php echo $randomPost['title']; ?>"/></a>
 
-        <p><strong><?php echo $lastestPost['title']; ?></strong></p>
+      <p><strong><?php echo $lastestPost['title']; ?></strong></p>
 
-      </li>
-    <?php endfor; ?>
-  </ul>
+    </li>
+  <?php endfor; ?>
+</ul>
 </div>
 <!-- end related posts -->
 </div>
