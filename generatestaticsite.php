@@ -30,6 +30,7 @@ while (!feof($fp)) {
 	}
 	
 }
+
 $generator->generate();
 $generator->deploy($bucket);
 echo "Done";
