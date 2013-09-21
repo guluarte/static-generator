@@ -30,7 +30,7 @@ while (!feof($fp)) {
 	$generator->addPost($post);
 	$cont++;
 	if ($cont > 20) {
-		break;
+		//break;
 	}
 	
 }
