@@ -100,7 +100,7 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
 <div class="row-fluid hidden-phone">
  <h2>More fun</h2>
 </div>
-<?php for ($i=0; $i < 3; $i++): ?>
+<?php for ($i=0; $i < 6; $i++): ?>
   <div class="row-fluid hidden-phone"> 
     <ul class="gallery thumbs-footer unstyled inline aligncenter">
       <?php for ($j=0; $j < 4; $j++): ?>
