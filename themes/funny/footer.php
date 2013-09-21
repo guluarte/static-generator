@@ -1,7 +1,7 @@
     </div>
     <hr>
     <footer class="width940 aligncenter">
-      <p>&copy;<?php echo $site['name']; ?> <?php echo date("Y"); ?> - <a href="/privacy.html">Privacy Policy</a></p>
+      <p>&copy;<?php echo $site['name']; ?> <?php echo date("Y"); ?> - <a href="/privacy.html"><?php echo SITE_PRIVACY_TITLE; ?></a></p>
     </footer>
 
   </div>

@@ -17,6 +17,7 @@ class StaticPageGenerator {
 	private $rebuild;
 	private $customFiles;
 	private $randomize = false;
+	private $lang;
 
 
 	public function __construct($theme, $source = './source', $public = './public', $rebuild = false) {
@@ -90,6 +91,18 @@ class StaticPageGenerator {
 		}
 		
 	}
+
+	public function setLang($lang) {
+		$this->lang = $lang;
+	}
+
+	private function getLangFile() {
+		 return "./themes/".$this->theme."/lang/".$this->lang.".php";
+	}
+	private function getLangConstants() {
+		include $this->getLangFile();
+	}
+
 	public function setSiteAuthor($author) {
 		$this->site['author'] = $author;
 	}
@@ -205,6 +218,7 @@ class StaticPageGenerator {
 
 	public function generate() {
 		echo "Generating.\n";
+		$this->getLangConstants();
 		if ($this->randomize === true) {
 			$this->randomizePosts();
 		}

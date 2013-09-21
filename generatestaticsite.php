@@ -14,7 +14,7 @@ $generator->setSiteAuthor("Funny Things");
 $generator->setSiteName("Funny Things 24/7");
 $generator->setSiteUrl("http://funnythings247.com");
 $generator->setSiteImagePath("http://funnythings247.com/images/");
-
+$generator->setLang('en_US');
 $generator->addCustomFiles('privacy.php', 'privacy.html', array(
 	'title' => "Privacy Policy",
 ));
@@ -34,7 +34,7 @@ while (!feof($fp)) {
 	$generator->addPost($post);
 	$cont++;
 	if ($cont > 200) {
-		#break;
+		//break;
 	}
 	
 }

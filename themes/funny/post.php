@@ -19,12 +19,12 @@
   </article>
   <nav class="aligncenter">
     <?php if ($prev): ?>
-    <a id="prev" class="btn btn-primary btn-large" href="<?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>">&larr; Prev</a>
+    <a id="prev" class="btn btn-primary btn-large" href="<?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>">&larr; <?php echo SITE_PREV; ?></a>
   <?php endif; ?>
   <?php $randomPost = current($random); ?>
-  <a id="rand" class="btn btn-primary btn-large" href="<?php echo $randomPost['url']; ?>" title="<?php echo $randomPost['title']; ?>">Random</a>
+  <a id="rand" class="btn btn-primary btn-large" href="<?php echo $randomPost['url']; ?>" title="<?php echo $randomPost['title']; ?>"><?php echo SITE_RANDOM; ?></a>
   <?php if ($next): ?>
-  <a id="next" class="btn btn-primary btn-large" href="<?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>">Next &rarr;</a>
+  <a id="next" class="btn btn-primary btn-large" href="<?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>"><?php echo SITE_NEXT; ?> &rarr;</a>
 <?php endif; ?>
 
 </nav>
@@ -52,12 +52,12 @@
   <ul class="nav nav-pills hidden-phone asidenav">
     <?php if ($prev): ?>
     <li class="nav-prev">
-     <a href="<?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>">&larr; Prev</a>
+     <a href="<?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>">&larr; <?php echo SITE_PREV; ?></a>
    </li>
  <?php endif; ?>
  <?php if ($next): ?>
  <li class="active">
-   <a href="<?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>">Next &rarr;</a>
+   <a href="<?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>"><?php echo SITE_NEXT; ?> &rarr;</a>
  </li>
 <?php endif; ?>
 </ul>
@@ -103,7 +103,7 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
 
 </div>
 <div class="row-fluid hidden-phone">
- <h2>More fun</h2>
+ <h2><?php echo SITE_MORE_FUN; ?></h2>
 </div>
 <?php for ($i=0; $i < 2; $i++): ?>
   <div class="row-fluid hidden-phone"> 

@@ -90,4 +90,4 @@ s3cmd sync --acl-public --guess-mime-type -P ./public/page/ye/* s3://funnythings
 s3cmd sync --acl-public --guess-mime-type -P ./public/page/yo/* s3://funnythings247.com/page/yo/
 s3cmd sync --acl-public --guess-mime-type -P ./public/page/zo/* s3://funnythings247.com/page/zo/
 s3cmd sync --acl-public --guess-mime-type -P ./public/assets/* s3://funnythings247.com/assets/ --add-header 'Cache-Control: public, max-age=31600000' 
-s3cmd sync --acl-public --guess-mime-type -P ./public/* s3://funnythings247.com/ --exclude='assets/*' --exclude='page/*'
+s3cmd sync --acl-public --guess-mime-type -P ./public/* s3://funnythings247.com/ --exclude='assets/' --exclude='page/' --exclude='images/'
