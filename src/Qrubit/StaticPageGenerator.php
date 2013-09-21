@@ -154,8 +154,8 @@ class StaticPageGenerator {
 					$next = false;
 				}
 
-				$randomPost = $this->getRandomPost(50);
-				
+				$randomPost = $this->getRandomPost(30);
+
 				$vars = array(
 					'site' => $this->site,
 					'post' => $post,
