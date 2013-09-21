@@ -179,12 +179,11 @@ class StaticPageGenerator {
 		$randomPost = array();
 		$rndNumbers = array();
 		for ($i=0; $i < $num; $i++) {
+
 			do {
 				$rndNumber = mt_rand(0, $this->getNumPosts());
-				
-			} while(!array_key_exists($rndNumber, $rndNumbers) );
+			} while(array_key_exists($rndNumber, $rndNumbers));
 
-			
 			$rndNumbers[$rndNumber] = $rndNumber; 
 			$randomPost[] = $this->posts[$rndNumber];
 			
