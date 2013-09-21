@@ -6,24 +6,30 @@
       <!--Body content-->
       <article class="content addrelative aligncenter">
         <div class="aligncenter postimage">
+          <?php if( $post['image'] ): ?>
           <img src="/images/<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>" title="<?php echo $post['title']; ?>"/>
-        </div>
-
-        <?php include(__DIR__."/share.php"); ?>
-      </article>
-      <nav class="aligncenter">
-        <?php if ($prev): ?>
-        <a id="prev" class="btn btn-primary btn-large" href="<?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>">&larr; Prev</a>
+        <?php endif; ?>
+        <?php if($post['youtubeid']): ?>
+         <iframe width="640" height="480" src="//www.youtube.com/embed/<?php echo $post['youtubeid']; ?>" frameborder="0" allowfullscreen></iframe>
       <?php endif; ?>
-      <?php $randomPost = current($random); ?>
-      <a id="rand" class="btn btn-primary btn-large" href="<?php echo $randomPost['url']; ?>" title="<?php echo $randomPost['title']; ?>">Random</a>
-      <?php if ($next): ?>
-      <a id="next" class="btn btn-primary btn-large" href="<?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>">Next &rarr;</a>
-    <?php endif; ?>
+     
+    </div>
 
-  </nav>
+    <?php include(__DIR__."/share.php"); ?>
+  </article>
+  <nav class="aligncenter">
+    <?php if ($prev): ?>
+    <a id="prev" class="btn btn-primary btn-large" href="<?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>">&larr; Prev</a>
+  <?php endif; ?>
+  <?php $randomPost = current($random); ?>
+  <a id="rand" class="btn btn-primary btn-large" href="<?php echo $randomPost['url']; ?>" title="<?php echo $randomPost['title']; ?>">Random</a>
+  <?php if ($next): ?>
+  <a id="next" class="btn btn-primary btn-large" href="<?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>">Next &rarr;</a>
+<?php endif; ?>
 
-  <?php if ($post['tags']): ?>
+</nav>
+
+<?php if ($post['tags']): ?>
   <ul class="inline unstyled hidden-phone aligncenter">
    <?php foreach($post['tags'] as $tag): ?>
    <li>

@@ -134,6 +134,8 @@ class StaticPageGenerator {
 		$postFile = $postFolder."/".$slug.".html";
 		$postUrl = "/".$postFile;
 		$title = trim(htmlentities($post['title'], ENT_QUOTES, 'UTF-8'));
+		$youtubeid = (isset($post['youtubeid'])) ? $post['youtubeid'] : false;
+		$custom = (isset($post['custom'])) ? $post['custom'] : false;
 
 		$this->posts[] = array(
 			'title' => $title,
@@ -146,6 +148,8 @@ class StaticPageGenerator {
 			'file' => $postFile,
 			'tags' => $post['tags'],
 			'category' => $post['category'],
+			'youtubeid' => $youtubeid,
+			'custom' => $custom,
 			);
 		$this->addFileToList($postUrl);
 		$this->addPostToFacebookPoster( array(
