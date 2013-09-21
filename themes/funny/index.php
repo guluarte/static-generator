@@ -21,21 +21,21 @@
 		<ul class="pager">
 			<?php if($prev): ?>
 			<li>
-				<a href="<? echo $prev['url']; ?>">&larr; Older</a>
+				<a href="<? echo $prev['url']; ?>">&larr; Newer</a>
 			</li>
 		<?php else: ?>
 		<li class="disabled">
-			<a href="#">&larr; Older</a>
+			<a href="#">&larr; Newer</a>
 		</li>
 	<?php endif; ?>
 
 	<?php if($next): ?>
 	<li>
-		<a href="<? echo $next['url']; ?>">Newer &rarr;</a>
+		<a href="<? echo $next['url']; ?>">Older &rarr;</a>
 	</li>
 <?php else: ?>
 	<li class="disabled">
-		<a href="#">Newer &rarr;</a>
+		<a href="#">Older &rarr;</a>
 	</li>
 <?php endif; ?>
 
@@ -47,21 +47,21 @@
 	<ul class="pager asidenav">
 		<?php if($prev): ?>
 		<li>
-			<a href="<? echo $prev['url']; ?>">&larr; Older</a>
+			<a href="<? echo $prev['url']; ?>">&larr; Newer</a>
 		</li>
 	<?php else: ?>
 	<li class="disabled">
-		<a href="#">&larr; Older</a>
+		<a href="#">&larr; Newer</a>
 	</li>
 <?php endif; ?>
 
 <?php if($next): ?>
 	<li>
-		<a href="<? echo $next['url']; ?>">Newer &rarr;</a>
+		<a href="<? echo $next['url']; ?>">Older &rarr;</a>
 	</li>
 <?php else: ?>
 	<li class="disabled">
-		<a href="#">Newer &rarr;</a>
+		<a href="#">Older &rarr;</a>
 	</li>
 <?php endif; ?>
 
