@@ -174,8 +174,8 @@ class StaticPageGenerator {
 					'random' => $randomPost,
 					'lastestPosts' => $lastestPosts,
 					'next' => $next,
-					'prev' => $prev,
-					);
+					'prev' => $prev
+,					);
 				$postResult = $this->renderFile($this->postFile, $vars);
 				echo ".";
 
@@ -269,7 +269,7 @@ class StaticPageGenerator {
 		$this->closeFileListHandler();
 		$pageDirs = $this->getListDirs($this->public."/page/");
 		foreach ($pageDirs as $pageDir) {
-			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/page/".$pageDir."/* s3://".$bucket."/page/".$pageDir."/";
+			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P --add-header 'Content-Encoding: gzip' ".$this->public."/page/".$pageDir."/* s3://".$bucket."/page/".$pageDir."/";
 			echo $deployCmd."\n";
 			$deployCmds .= $deployCmd."\n";
 			system($deployCmd);
@@ -280,7 +280,12 @@ class StaticPageGenerator {
 		$deployCmds .= $deployCmd."\n";
 		system($deployCmd);
 
-		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/* s3://".$bucket."/ --exclude='assets/*' --exclude='page/*'";
+		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/* s3://".$bucket."/ --exclude='assets/*' --exclude='page/*' --exclude='*.html'";
+		echo $deployCmd."\n";
+		$deployCmds .= $deployCmd."\n";
+		system($deployCmd);
+
+		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P  --add-header 'Content-Encoding: gzip' ".$this->public."/*.html s3://".$bucket."/ --exclude='assets/*' --exclude='page/*' --exclude='*.txt'";
 		echo $deployCmd."\n";
 		$deployCmds .= $deployCmd."\n";
 		system($deployCmd);
@@ -310,7 +315,7 @@ class StaticPageGenerator {
 
 	private function renderFile($file, $vars) {
 		extract($vars);
-		ob_start();
+		ob_start("ob_gzhandler");
 		include $file;
 		return ob_get_clean();
 	}	
