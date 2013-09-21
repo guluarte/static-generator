@@ -20,6 +20,7 @@ $generator->addCustomFiles('privacy.php', 'privacy.html', array(
 ));
 
 $generator->setRandomize();
+
 $cont = 0;
 while (!feof($fp)) {
 	$json = trim(fgets($fp));
