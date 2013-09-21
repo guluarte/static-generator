@@ -20,6 +20,7 @@
       <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/apple-touch-icon-72x72.png?version=<?php echo $site['version'];?>">
       <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/apple-touch-icon-114x114.png?version=<?php echo $site['version'];?>">
      
+     <meta name="description" content="<?php echo $post['title']; ?>">
       <!-- Facebook metatags -->
       <?php 
       if(isset($post['image'])):
