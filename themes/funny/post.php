@@ -6,7 +6,7 @@
       <!--Body content-->
       <article class="content addrelative aligncenter">
         <div class="aligncenter postimage">
-          <img src="/images/<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>"/>
+          <img src="/images/<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>" title="<?php echo $post['title']; ?>"/>
         </div>
 
         <?php include(__DIR__."/share.php"); ?>
@@ -63,7 +63,7 @@
   <?php for ($i=0; $i < 3; $i++): ?>
   <?php $randomPost = next($random); ?>
   <li>
-   <a href="<?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>"/></a>
+   <a href="<?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>" title="<?php echo $randomPost['title']; ?>"/></a>
  </li>
 <?php endfor; ?>
 
@@ -88,7 +88,7 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
   <?php for ($i=0; $i < 3; $i++): ?>
   <?php $randomPost = next($random); ?>
   <li>
-   <a href="<?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>"/></a>
+   <a href="<?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>" title="<?php echo $randomPost['title']; ?>"/></a>
  </li>
 <?php endfor; ?>
 </ul>
@@ -105,7 +105,7 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
       <?php for ($j=0; $j < 4; $j++): ?>
       <?php $randomPost = next($random); ?>
       <li class="span3">
-        <a href="<?php echo $randomPost['url']; ?>"><img src="/images/thumb.<?php echo $randomPost['image']; ?>.jpg" alt="<?php echo $randomPost['title']; ?>"/></a>
+        <a href="<?php echo $randomPost['url']; ?>"><img src="/images/thumb.<?php echo $randomPost['image']; ?>.jpg" alt="<?php echo $randomPost['title']; ?>" title="<?php echo $randomPost['title']; ?>"/></a>
 
         <p><strong><?php echo $randomPost['title']; ?></strong></p>
 

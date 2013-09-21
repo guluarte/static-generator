@@ -9,7 +9,7 @@
 			<article class="content addrelative ">
 				
 				<div class="aligncenter postimage">
-					<a href="<?php echo $post['url']; ?>"><img src="/images/<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>"/></a>
+					<a href="<?php echo $post['url']; ?>"><img src="/images/<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>" title="<?php echo $post['title']; ?>"/></a>
 				</div>
 
 			</article>
@@ -50,7 +50,7 @@
 	<?php for ($i=0; $i < 2; $i++): ?>
 	<?php $randomPost = next($random); ?>
 	<li>
-		<a href="<?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>"/></a>
+		<a href="<?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>" title="<?php echo $randomPost['title']; ?>"/></a>
 	</li>
 <? endfor; ?>
 
@@ -72,7 +72,7 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
 	<?php for ($i=0; $i < 22; $i++): ?>
 	<?php $randomPost = next($random); ?>
 	<li>
-		<a href="<?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>"/></a>
+		<a href="<?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>" title="<?php echo $randomPost['title']; ?>"/></a>
 	</li>
 <? endfor; ?>
 

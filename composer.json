@@ -6,7 +6,12 @@
 			"symfony/yaml": "2.2.*@dev",
 			"symfony/finder": "2.4.*@dev",
 			"twig/twig": "1.14.*@dev",
-			"silex/silex": "1.1.*@dev"
+			"silex/silex": "1.1.*@dev",
+			"symfony/form": "2.3.*",
+			"symfony/validator": "2.3.*",
+			"symfony/config": "2.3.*",
+			"symfony/twig-bridge": "2.3.*"
+
 		}
 
 		
