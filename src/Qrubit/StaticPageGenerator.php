@@ -268,16 +268,16 @@ class StaticPageGenerator {
 		$this->closeFileListHandler();
 		$pageDirs = $this->getListDirs($this->public."/page/");
 		foreach ($pageDirs as $pageDir) {
-			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/page/".$pageDir."/* s3://".$bucket."/page/".$pageDir."/";
+			$deployCmd = "s3cmd sync --acl-public --no-mime-magic  -P ".$this->public."/page/".$pageDir."/* s3://".$bucket."/page/".$pageDir."/";
 			echo $deployCmd."\n";
 			system($deployCmd);
 		}
 
-		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000' ";
+		$deployCmd = "s3cmd sync --acl-public --no-mime-magic -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000' ";
 		echo $deployCmd."\n";
 		system($deployCmd);
 
-		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/* s3://".$bucket."/ --exclude='assets/*' --exclude='page/*'";
+		$deployCmd = "s3cmd sync --acl-public --no-mime-magic -P ".$this->public."/* s3://".$bucket."/ --exclude='assets/*' --exclude='page/*'";
 		echo $deployCmd."\n";
 		system($deployCmd);
 	}
