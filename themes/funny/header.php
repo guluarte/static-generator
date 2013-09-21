@@ -32,7 +32,7 @@
 
       <meta property="og:image" content="<?php echo $image; ?>"/>
       <meta property="og:title" content="<?php echo $post['title']; ?>"/>
-      <meta property="og:description" content="<?php echo $post['title']; ?>" ?>
+      <meta property="og:description" content="<?php echo $post['title']; ?>" />
       <meta property="og:url" content="<?php echo $site['url']; ?><?php echo $post['url']; ?>"/>
       <meta property="og:site_name" content="<?php echo $site['name']; ?>"/>
       <meta property="og:type" content="website"/>
