@@ -345,7 +345,7 @@ class StaticPageGenerator {
 
 
 		file_put_contents("./deploy.sh", $deployCmds);
-		chmod("./deploy.sh", "0755");
+		chmod("./deploy.sh", "755");
 	}
 	private function generateSiteMap() {
 		$sitemap = "";
