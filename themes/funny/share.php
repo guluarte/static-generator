@@ -14,7 +14,7 @@
               })();
             </script></li>
             <li>
-              <a href="//www.pinterest.com/pin/create/button/?url=<?php echo $site['url_encode']; ?><?php echo $post['url_encode']; ?>&media=<?php echo $site['image_path_encode']; ?><?php echo $post['image_encode']; ?>&description=<?php echo $post['title_encode']; ?>" data-pin-do="buttonPin" data-pin-config="above"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>
+              <a href="//www.pinterest.com/pin/create/button/?url=<?php echo $site['url_encode']; ?><?php echo $post['url_encode']; ?>&media=<?php echo $site['image_path_encode']; ?><?php echo $post['image_encode']; ?>&description=<?php echo $post['title_encode']; ?><?php echo urlencode(" #funny #wtf #lol #random #funnythings247")?>" data-pin-do="buttonPin" data-pin-config="above"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>
             </li>
           </ul>
         </div>
