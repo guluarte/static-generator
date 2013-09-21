@@ -16,16 +16,16 @@
       <link href="/assets/themes/twitter/css/style.css?body=1&version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" media="all">
       <link rel="shortcut icon" href="/favicon.ico?version=<?php echo $site['version'];?>">
      
-      <link rel="apple-touch-icon" href="/img/apple-touch-icon.png?version=<?php echo $site['version'];?>">
-      <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png?version=<?php echo $site['version'];?>">
-      <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png?version=<?php echo $site['version'];?>">
+      <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?version=<?php echo $site['version'];?>">
+      <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/apple-touch-icon-72x72.png?version=<?php echo $site['version'];?>">
+      <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/apple-touch-icon-114x114.png?version=<?php echo $site['version'];?>">
      
       <!-- Facebook metatags -->
       <?php 
       if(isset($post['image'])):
           $image = $site['image_path']."thumb480x360.".$post['image'].".jpg";
         else: 
-          $image = $site['image_path']."default.jpg?version=".$site['version'];
+          $image = $site['url']."/assets/images/default.jpg?version=".$site['version'];
         endif; 
       ?>
       <meta property="og:image" content="<?php echo $image; ?>"/>
