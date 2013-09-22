@@ -35,9 +35,11 @@
       <meta property="og:url" content="<?php echo $site['url']; ?><?php echo $post['url']; ?>"/>
       <meta property="og:site_name" content="<?php echo $site['name']; ?>"/>
       <meta property="og:type" content="website"/>
+      <meta property="og:updated_time" content="<?php echo time(); ?>"/>
       <meta property="fb:admins" content="547998939, 100004691232252"/>
       <meta property="fb:page_id" content="165172277018867" />
       <meta property="fb:app_id" content="583195078383535" />
+
       <!-- end facebook metatags -->
       <?php if(isset($post['image'])): ?>
       <!-- Twitter meta tags -->

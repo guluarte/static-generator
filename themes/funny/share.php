@@ -4,7 +4,7 @@
 
               <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>
 
-              <li class="facebook"><div class="fb-like" data-href="<?php echo $site['url']; ?><?php echo $post['url']; ?>" data-width="450" data-layout="box_count" data-show-faces="true" data-send="false"></div></li>
+              <li class="facebook"><div class="fb-like" data-href="http://fb.funnythings247.com/enter.php?next=<?php echo urlencode( $site['url'].$post['url']); ?>" data-width="450" data-layout="box_count" data-show-faces="true" data-send="false"></div></li>
 
               <li class="googleplus"><g:plusone size="tall"></g:plusone><script type="text/javascript">
               (function() {

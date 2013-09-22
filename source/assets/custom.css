@@ -5,6 +5,7 @@ header {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+.fb-comments, .fb-comments iframe[style] {width: 100% !important;}
 .asidenav {
 	margin-bottom: 5px;
 }
