@@ -19,12 +19,12 @@
   </article>
   <nav class="aligncenter">
     <?php if ($prev): ?>
-    <a id="prev" class="btn btn-primary btn-large" href="<?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>">&larr; <?php echo SITE_PREV; ?></a>
+    <a id="prev" class="btn btn-primary btn-large" href="<?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>" rel="prev">&larr; <?php echo SITE_PREV; ?></a>
   <?php endif; ?>
   <?php $randomPost = current($random); ?>
   <a id="rand" class="btn btn-primary btn-large" href="<?php echo $randomPost['url']; ?>" title="<?php echo $randomPost['title']; ?>"><?php echo SITE_RANDOM; ?></a>
   <?php if ($next): ?>
-  <a id="next" class="btn btn-primary btn-large" href="<?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>"><?php echo SITE_NEXT; ?> &rarr;</a>
+  <a id="next" class="btn btn-primary btn-large" href="<?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>" rel="next"><?php echo SITE_NEXT; ?> &rarr;</a>
 <?php endif; ?>
 
 </nav>
@@ -52,12 +52,12 @@
   <ul class="nav nav-pills hidden-phone asidenav">
     <?php if ($prev): ?>
     <li class="nav-prev">
-     <a href="<?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>">&larr; <?php echo SITE_PREV; ?></a>
+     <a href="<?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>" rel="prev">&larr; <?php echo SITE_PREV; ?></a>
    </li>
  <?php endif; ?>
  <?php if ($next): ?>
  <li class="active">
-   <a href="<?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>"><?php echo SITE_NEXT; ?> &rarr;</a>
+   <a href="<?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>" rel="next"><?php echo SITE_NEXT; ?> &rarr;</a>
  </li>
 <?php endif; ?>
 </ul>

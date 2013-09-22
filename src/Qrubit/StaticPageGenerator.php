@@ -306,7 +306,7 @@ class StaticPageGenerator {
 
 			$post = array(
 				'title' => $this->site['name'],
-				'url' => '/'.$url,
+				'url' => $url,
 				);
 
 			$vars = array(

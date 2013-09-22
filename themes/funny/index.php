@@ -21,7 +21,7 @@
 		<ul class="pager">
 			<?php if($prev): ?>
 			<li>
-				<a href="<? echo $prev['url']; ?>">&larr; <?php echo SITE_NEWER; ?></a>
+				<a href="<? echo $prev['url']; ?>" rel="prev">&larr; <?php echo SITE_NEWER; ?></a>
 			</li>
 		<?php else: ?>
 		<li class="disabled">
@@ -31,7 +31,7 @@
 
 	<?php if($next): ?>
 	<li>
-		<a href="<? echo $next['url']; ?>"><?php echo SITE_OLDER; ?> &rarr;</a>
+		<a href="<? echo $next['url']; ?>" rel="next"><?php echo SITE_OLDER; ?> &rarr;</a>
 	</li>
 <?php else: ?>
 	<li class="disabled">
@@ -47,17 +47,17 @@
 	<ul class="pager asidenav">
 		<?php if($prev): ?>
 		<li>
-			<a href="<? echo $prev['url']; ?>">&larr; <?php echo SITE_NEWER; ?></a>
+			<a href="<? echo $prev['url']; ?>" rel="prev">&larr; <?php echo SITE_NEWER; ?></a>
 		</li>
 	<?php else: ?>
 	<li class="disabled">
-		<a href="#">&larr; <?php echo SITE_NEWER; ?></a>
+		<a href="#" >&larr; <?php echo SITE_NEWER; ?></a>
 	</li>
 <?php endif; ?>
 
 <?php if($next): ?>
 	<li>
-		<a href="<? echo $next['url']; ?>"><?php echo SITE_OLDER; ?> &rarr;</a>
+		<a href="<? echo $next['url']; ?>" rel="next"><?php echo SITE_OLDER; ?> &rarr;</a>
 	</li>
 <?php else: ?>
 	<li class="disabled">
