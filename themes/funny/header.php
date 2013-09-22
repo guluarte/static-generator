@@ -12,13 +12,13 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
       <!-- styles -->
-      <link href="/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css?version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" >
-      <link href="/assets/themes/twitter/css/style.css?body=1&version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" media="all">
-      <link rel="shortcut icon" href="/favicon.ico?version=<?php echo $site['version'];?>">
+      <link href="<?php echo $site['url']; ?>/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css?version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" >
+      <link href="<?php echo $site['url']; ?>/assets/themes/twitter/css/style.css?body=1&version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" media="all">
+      <link rel="shortcut icon" href="<?php echo $site['url']; ?>/favicon.ico?version=<?php echo $site['version'];?>">
 
-      <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png?version=<?php echo $site['version'];?>">
-      <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/apple-touch-icon-72x72.png?version=<?php echo $site['version'];?>">
-      <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/apple-touch-icon-114x114.png?version=<?php echo $site['version'];?>">
+      <link rel="apple-touch-icon" href="<?php echo $site['url']; ?>/assets/images/apple-touch-icon.png?version=<?php echo $site['version'];?>">
+      <link rel="apple-touch-icon" sizes="72x72" href="<?php echo $site['url']; ?>/assets/images/apple-touch-icon-72x72.png?version=<?php echo $site['version'];?>">
+      <link rel="apple-touch-icon" sizes="114x114" href="<?php echo $site['url']; ?>/assets/images/apple-touch-icon-114x114.png?version=<?php echo $site['version'];?>">
 
       <meta name="description" content="<?php echo $post['title']; ?>">
       <!-- Facebook metatags -->
@@ -51,7 +51,7 @@
       <meta name="twitter:domain" content="funnythings247.com" />
       <!-- end twitter tags -->
     <?php endif; ?>
-    <link href="/assets/custom.css?version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" >
+    <link href="<?php echo $site['url']; ?>/assets/custom.css?version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" >
 
   </head>
 
@@ -68,7 +68,7 @@
     <header class="container-fluid width940">
       <div class="row-fluid menu">
         <div class="span4">
-          <a href="/" class="logo"><h1>Funny Things 24/7</h1></a>
+          <a href="<?php echo $site['url']; ?>/" class="logo"><h1>Funny Things 24/7</h1></a>
         </div>
         <div class="span7">
           <div class="hidden-phone">

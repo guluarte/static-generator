@@ -2,14 +2,14 @@
 <div class="row-fluid">
 	<section class="span7 maincontainer">
 		<?php foreach($posts as $post): ?>
-		<a href="<?php echo $post['url']; ?>">
+		<a href="<?php echo $site['url']; ?><?php echo $post['url']; ?>">
 			<h2><?php echo $post['title']; ?></h1>
 			</a>	
 			<!--Body content-->
 			<article class="content addrelative ">
 				
 				<div class="aligncenter postimage">
-					<a href="<?php echo $post['url']; ?>"><img src="/images/<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>" title="<?php echo $post['title']; ?>"/></a>
+					<a href="<?php echo $site['url']; ?><?php echo $post['url']; ?>"><img src="<?php echo $site['url']; ?>/images/<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>" title="<?php echo $post['title']; ?>"/></a>
 				</div>
 
 			</article>
@@ -21,7 +21,7 @@
 		<ul class="pager">
 			<?php if($prev): ?>
 			<li>
-				<a href="<? echo $prev['url']; ?>" rel="prev">&larr; <?php echo SITE_NEWER; ?></a>
+				<a href="<?php echo $site['url']; ?><? echo $prev['url']; ?>" rel="prev">&larr; <?php echo SITE_NEWER; ?></a>
 			</li>
 		<?php else: ?>
 		<li class="disabled">
@@ -31,7 +31,7 @@
 
 	<?php if($next): ?>
 	<li>
-		<a href="<? echo $next['url']; ?>" rel="next"><?php echo SITE_OLDER; ?> &rarr;</a>
+		<a href="<?php echo $site['url']; ?><? echo $next['url']; ?>" rel="next"><?php echo SITE_OLDER; ?> &rarr;</a>
 	</li>
 <?php else: ?>
 	<li class="disabled">
@@ -47,7 +47,7 @@
 	<ul class="pager asidenav">
 		<?php if($prev): ?>
 		<li>
-			<a href="<? echo $prev['url']; ?>" rel="prev">&larr; <?php echo SITE_NEWER; ?></a>
+			<a href="<?php echo $site['url']; ?><? echo $prev['url']; ?>" rel="prev">&larr; <?php echo SITE_NEWER; ?></a>
 		</li>
 	<?php else: ?>
 	<li class="disabled">
@@ -57,7 +57,7 @@
 
 <?php if($next): ?>
 	<li>
-		<a href="<? echo $next['url']; ?>" rel="next"><?php echo SITE_OLDER; ?> &rarr;</a>
+		<a href="<?php echo $site['url']; ?><? echo $next['url']; ?>" rel="next"><?php echo SITE_OLDER; ?> &rarr;</a>
 	</li>
 <?php else: ?>
 	<li class="disabled">
@@ -73,7 +73,7 @@
 	<?php for ($i=0; $i < 2; $i++): ?>
 	<?php $randomPost = next($random); ?>
 	<li>
-		<a href="<?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>" title="<?php echo $randomPost['title']; ?>"/></a>
+		<a href="<?php echo $site['url']; ?><?php echo $randomPost['url'] ?>"><img src="<?php echo $site['url']; ?>/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>" title="<?php echo $randomPost['title']; ?>"/></a>
 	</li>
 <? endfor; ?>
 
@@ -95,7 +95,7 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
 	<?php for ($i=0; $i < 22; $i++): ?>
 	<?php $randomPost = next($random); ?>
 	<li>
-		<a href="<?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>" title="<?php echo $randomPost['title']; ?>"/></a>
+		<a href="<?php echo $site['url']; ?><?php echo $randomPost['url'] ?>"><img src="<?php echo $site['url']; ?>/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>" title="<?php echo $randomPost['title']; ?>"/></a>
 	</li>
 <? endfor; ?>
 

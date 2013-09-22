@@ -7,7 +7,7 @@
       <article class="content addrelative aligncenter">
         <div class="aligncenter postimage">
           <?php if( $post['image'] ): ?>
-          <img src="/images/<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>" title="<?php echo $post['title']; ?>"/>
+          <img src="<?php echo $site['url']; ?>/images/<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>" title="<?php echo $post['title']; ?>"/>
         <?php endif; ?>
         <?php if($post['youtubeid']): ?>
          <iframe width="640" height="480" src="//www.youtube.com/embed/<?php echo $post['youtubeid']; ?>" frameborder="0" allowfullscreen></iframe>
@@ -19,12 +19,12 @@
   </article>
   <nav class="aligncenter">
     <?php if ($prev): ?>
-    <a id="prev" class="btn btn-primary btn-large" href="<?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>" rel="prev">&larr; <?php echo SITE_PREV; ?></a>
+    <a id="prev" class="btn btn-primary btn-large" href="<?php echo $site['url']; ?><?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>" rel="prev">&larr; <?php echo SITE_PREV; ?></a>
   <?php endif; ?>
   <?php $randomPost = current($random); ?>
-  <a id="rand" class="btn btn-primary btn-large" href="<?php echo $randomPost['url']; ?>" title="<?php echo $randomPost['title']; ?>"><?php echo SITE_RANDOM; ?></a>
+  <a id="rand" class="btn btn-primary btn-large" href="<?php echo $site['url']; ?><?php echo $randomPost['url']; ?>" title="<?php echo $randomPost['title']; ?>"><?php echo SITE_RANDOM; ?></a>
   <?php if ($next): ?>
-  <a id="next" class="btn btn-primary btn-large" href="<?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>" rel="next"><?php echo SITE_NEXT; ?> &rarr;</a>
+  <a id="next" class="btn btn-primary btn-large" href="<?php echo $site['url']; ?><?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>" rel="next"><?php echo SITE_NEXT; ?> &rarr;</a>
 <?php endif; ?>
 
 </nav>
@@ -41,7 +41,7 @@
 <?php endif; ?>
 
 <div class="aligncenter hidden-phone">
- <div class="fb-comments" data-href="<?php echo $site['url']; ?><?php echo $post['url']; ?>" data-num-posts="20" data-width="600" data-colorscheme="light"></div>
+ <div class="fb-comments" data-href="<?php echo $site['url']; ?><?php echo $site['url']; ?><?php echo $post['url']; ?>" data-num-posts="20" data-width="600" data-colorscheme="light"></div>
 </div>
 
 <!-- end body content -->
@@ -52,12 +52,12 @@
   <ul class="nav nav-pills hidden-phone asidenav">
     <?php if ($prev): ?>
     <li class="nav-prev">
-     <a href="<?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>" rel="prev">&larr; <?php echo SITE_PREV; ?></a>
+     <a href="<?php echo $site['url']; ?><?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>" rel="prev">&larr; <?php echo SITE_PREV; ?></a>
    </li>
  <?php endif; ?>
  <?php if ($next): ?>
  <li class="active">
-   <a href="<?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>" rel="next"><?php echo SITE_NEXT; ?> &rarr;</a>
+   <a href="<?php echo $site['url']; ?><?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>" rel="next"><?php echo SITE_NEXT; ?> &rarr;</a>
  </li>
 <?php endif; ?>
 </ul>
@@ -69,7 +69,7 @@
   <?php for ($i=0; $i < 3; $i++): ?>
   <?php $randomPost = next($random); ?>
   <li>
-   <a href="<?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>" title="<?php echo $randomPost['title']; ?>"/></a>
+   <a href="<?php echo $site['url']; ?><?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>" title="<?php echo $randomPost['title']; ?>"/></a>
  </li>
 <?php endfor; ?>
 
@@ -94,7 +94,7 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
   <?php for ($i=0; $i < 3; $i++): ?>
   <?php $randomPost = next($random); ?>
   <li>
-   <a href="<?php echo $randomPost['url'] ?>"><img src="/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>" title="<?php echo $randomPost['title']; ?>"/></a>
+   <a href="<?php echo $site['url']; ?><?php echo $randomPost['url'] ?>"><img src="<?php echo $site['url']; ?>/images/thumb.<?php echo $randomPost['image'] ?>.jpg" alt="<?php echo $randomPost['title'] ?>" title="<?php echo $randomPost['title']; ?>"/></a>
  </li>
 <?php endfor; ?>
 </ul>
@@ -111,7 +111,7 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
       <?php for ($j=0; $j < 4; $j++): ?>
       <?php $randomPost = next($random); ?>
       <li class="span3">
-        <a href="<?php echo $randomPost['url']; ?>"><img src="/images/thumb.<?php echo $randomPost['image']; ?>.jpg" alt="<?php echo $randomPost['title']; ?>" title="<?php echo $randomPost['title']; ?>"/></a>
+        <a href="<?php echo $site['url']; ?><?php echo $randomPost['url']; ?>"><img src="<?php echo $site['url']; ?>/images/thumb.<?php echo $randomPost['image']; ?>.jpg" alt="<?php echo $randomPost['title']; ?>" title="<?php echo $randomPost['title']; ?>"/></a>
 
         <p><strong><?php echo $randomPost['title']; ?></strong></p>
 
