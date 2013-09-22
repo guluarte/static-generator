@@ -97,7 +97,7 @@ class StaticPageGenerator {
 	}
 
 	private function getLangFile() {
-		 return "./themes/".$this->theme."/lang/".$this->lang.".php";
+		return "./themes/".$this->theme."/lang/".$this->lang.".php";
 	}
 	private function getLangConstants() {
 		include $this->getLangFile();
@@ -281,7 +281,7 @@ class StaticPageGenerator {
 				$next['url'] = "/page".$nextId.".html";
 			} 
 			if ($i == 1) {
-				$prev['url'] = "/index.html";
+				$prev['url'] = "/";
 				$next['url'] = "/page".$nextId.".html";
 			}
 			if ($i > 1 && $i < $numPages) {
@@ -289,13 +289,15 @@ class StaticPageGenerator {
 				$next['url'] = "/page".$nextId.".html";
 			}
 			if ($i == ($numPages-1)) {
-				$next['url'] = "/index.html";
+				$next['url'] = "/";
 			} 
 
 			if ($i == 0) {
 				$filename = "index.html";
+				$url = "/";
 			}  else {
 				$filename = "page".$i.".html";
+				$url = "/".$filename;
 			}
 			$offset = $i * $numPostPerPage;
 			$posts = $this->getNextPosts(10, $offset);
@@ -304,7 +306,7 @@ class StaticPageGenerator {
 
 			$post = array(
 				'title' => $this->site['name'],
-				'url' => '/'.$filename,
+				'url' => '/'.$url,
 				);
 
 			$vars = array(
@@ -365,12 +367,40 @@ class StaticPageGenerator {
 		chmod("./deploy.sh", "755");
 	}
 	private function generateSiteMap() {
-		$sitemap = "";
-		foreach ($this->urlList as $url) {
-			$sitemap .= $this->site['url'].$url."\n";
+		$numUrlsPerSitemap = 50000;
+		$sitemap = '<?xml version="1.0" encoding="UTF-8"?>
+		<sitemapindex xmlns="http://www.google.com/schemas/sitemap/0.84">'.PHP_EOL;
+		
+		$numUrls = count($this->urlList)-1;
+		$numSitemaps =  round(($numUrls/$numUrlsPerSitemap), 0);
+		$numSitemaps = ( ($numUrls % $numUrlsPerSitemap) == 0) ? $numSitemaps : ($numSitemaps+1);
+
+		for ($i=0; $i < $numSitemaps; $i++) {
+			$offset = $i * $numUrlsPerSitemap; 
+			$singleSitemapUrl = $this->generateSingleSitemap($i, $offset, $numUrlsPerSitemap);
+			$sitemap .= "<sitemap>
+			<loc>".$singleSitemapUrl."</loc>
+			<lastmod>".date("Y-m-d")."</lastmod>
+			</sitemap>". PHP_EOL;
 		}
-		file_put_contents($this->public."/sitemap.txt", $sitemap);
+
+		$sitemap .= "</sitemapindex>";
+
+		file_put_contents($this->public."/sitemap.xml", $sitemap);
 		unset($sitemap);
+	}
+
+	private function generateSingleSitemap($num, $offset, $limit) {
+		$sitemap = "";
+		$limit = $offset + $limit;
+		for ($i = $offset; $i < $limit; $i++) {
+			if (isset($this->urlList[$i])) {
+				$sitemap .= $this->site['url']. $this->urlList[$i] . PHP_EOL;
+			} 
+		}
+		echo $sitemap;
+		file_put_contents($this->public."/sitemap-".$num.".txt", $sitemap);
+		return $this->site['url']."/sitemap-".$num.".txt";
 	}
 	private function getNextPosts($amount, $offset) {
 		$posts = array();
