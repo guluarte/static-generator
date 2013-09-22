@@ -17,7 +17,7 @@ $generator->setSiteImagePath("http://funnythings247.com/images/");
 $generator->setLang('en_US');
 $generator->addCustomFiles('privacy.php', 'privacy.html', array(
 	'title' => "Privacy Policy",
-));
+	));
 
 $generator->setRandomize();
 
@@ -25,17 +25,20 @@ $cont = 0;
 while (!feof($fp)) {
 	$json = trim(fgets($fp));
 	$array = json_decode($json, true);
-	$post = array(
-		'title' => $array['title'],
-		'image' => $array['filename'],
-		'tags' =>  $array['categories'],
-		'category' => $array['categories'][0],
-		);
-	$generator->addPost($post);
-	$cont++;
-	if ($cont > 200) {
-		break;
+	if ( !strstr($array['title'], "http://")) {
+		$post = array(
+			'title' => $array['title'],
+			'image' => $array['filename'],
+			'tags' =>  $array['categories'],
+			'category' => $array['categories'][0],
+			);
+		$generator->addPost($post);
+		$cont++;
+		if ($cont > 200) {
+			break;
+		}
 	}
+
 	
 }
 
