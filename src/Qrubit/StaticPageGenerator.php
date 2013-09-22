@@ -345,18 +345,26 @@ class StaticPageGenerator {
 		$deployCmds = "";
 		$this->closeFileListHandler();
 		$pageDirs = $this->getListDirs($this->public."/page/");
+		
+		#Sync Pages
 		foreach ($pageDirs as $pageDir) {
 			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/page/".$pageDir."/* s3://".$bucket."/page/".$pageDir."/";
 			echo $deployCmd."\n";
 			$deployCmds .= $deployCmd."\n";
 			#system($deployCmd);
 		}
+		#Sync folders inside page
+		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/page/* s3://".$bucket."/page/";
+		echo $deployCmd."\n";
+		$deployCmds .= $deployCmd."\n";
 
+		#Sync assets
 		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000' ";
 		echo $deployCmd."\n";
 		$deployCmds .= $deployCmd."\n";
 		#system($deployCmd);
 
+		#Sync home folder
 		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/* s3://".$bucket."/ --exclude='assets/' --exclude='page/' --exclude='images/'";
 		echo $deployCmd."\n";
 		$deployCmds .= $deployCmd."\n";
@@ -364,7 +372,7 @@ class StaticPageGenerator {
 
 
 		file_put_contents("./deploy.sh", $deployCmds);
-		chmod("./deploy.sh", "755");
+		
 	}
 	private function generateSiteMap() {
 		$numUrlsPerSitemap = 50000;
