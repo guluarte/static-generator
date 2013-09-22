@@ -41,14 +41,14 @@
       <!-- end facebook metatags -->
       <?php if(isset($post['image'])): ?>
       <!-- Twitter meta tags -->
-      <meta name="twitter:card" content="photo">
-      <meta name="twitter:url" content="<?php echo $site['url']; ?><?php echo $post['url']; ?>">
-      <meta name="twitter:title" content="<?php echo $post['title']; ?>">
-      <meta name="twitter:description" content="<?php echo $post['title']; ?> @funnythings247">
-      <meta name="twitter:image:src" content="<?php echo $site['image_path'].$post['image']; ?>">
-      <meta name="twitter:site" content="@funnythings247">
-      <meta name="twitter:creator" content="@funnythings247">
-      <meta name="twitter:domain" content="funnythings247.com">
+      <meta name="twitter:card" content="photo" />
+      <meta name="twitter:url" content="<?php echo $site['url']; ?><?php echo $post['url']; ?>" />
+      <meta name="twitter:title" content="<?php echo $post['title']; ?>" />
+      <meta name="twitter:description" content="<?php echo $post['title']; ?> @funnythings247" />
+      <meta name="twitter:image:src" content="<?php echo $site['image_path'].$post['image']; ?>" />
+      <meta name="twitter:site" content="@funnythings247" />
+      <meta name="twitter:creator" content="@funnythings247" />
+      <meta name="twitter:domain" content="funnythings247.com" />
       <!-- end twitter tags -->
     <?php endif; ?>
     <link href="/assets/custom.css?version=<?php echo $site['version'];?>" rel="stylesheet" type="text/css" >
