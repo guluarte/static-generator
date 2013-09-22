@@ -27,7 +27,7 @@ function addPostFromFile($file, $generator) {
 		return false;
 	}
 	#system("tac ".$file." > ".$file.".rev");
-	$fp = fopen($file., 'r'); //open the file in reverse
+	$fp = fopen($file, 'r'); //open the file in reverse
 	$cont = 0;
 	while (!feof($fp)) {
 		$json = trim(fgets($fp));
