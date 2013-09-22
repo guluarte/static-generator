@@ -41,7 +41,7 @@
 <?php endif; ?>
 
 <div class="aligncenter hidden-phone">
- <div class="fb-comments" data-href="<?php echo $site['url']; ?><?php echo $site['url']; ?><?php echo $post['url']; ?>" data-num-posts="20" data-width="600" data-colorscheme="light"></div>
+ <div class="fb-comments" data-href="<?php echo $site['url']; ?><?php echo $post['url']; ?>" data-num-posts="20" data-width="600" data-colorscheme="light"></div>
 </div>
 
 <!-- end body content -->
