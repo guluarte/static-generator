@@ -6,7 +6,7 @@
   <!-- redirect here -->
   <script>
   var pageToGo = Math.floor((Math.random()*<?php echo $numPages; ?>)+1);
-  window.top.location.href = "<?php echo $site['url']; ?>/page" + pageToGo +".html";
+  window.top.location.href = "<?php echo $site['url']; ?>/nav/page" + pageToGo +".html";
   </script>   
   <!-- randomin redirect end -->
 <?php endif; ?>
