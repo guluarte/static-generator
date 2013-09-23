@@ -1,8 +1,7 @@
     </div>
     <hr>
     <footer class="width940 aligncenter">
-      <p>&copy;<?php echo $site['name']; ?> <?php echo date("Y"); ?> - <a href="<?php echo $site['url']; ?>/privacy.html"><?php echo SITE_PRIVACY_TITLE; ?></a> - <a href="https://plus.google.com/u/0/b/108808691043819734649/?
-   rel=author" rel="author">Follow us on Goolge+</a></p>
+      <p>&copy;<?php echo $site['name']; ?> <?php echo date("Y"); ?> - <a href="<?php echo $site['url']; ?>/privacy.html"><?php echo SITE_PRIVACY_TITLE; ?></a> - <a href="https://plus.google.com/u/0/b/108808691043819734649/?rel=author" rel="author">Follow us on Goolge+</a></p>
     </footer>
 
   </div>
