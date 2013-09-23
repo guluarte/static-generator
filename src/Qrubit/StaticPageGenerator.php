@@ -155,7 +155,7 @@ class StaticPageGenerator {
 				$postFile = $postFolder."/".$slug."-".$postRepeatedNum .".html";
 			}
 			$postRepeatedNum++;
-			echo $this->public ."/". $postFile.PHP_EOL;
+
 		} while( isset($this->posts[$postFile]) );
 
 		$postUrl = "/".$postFile;
