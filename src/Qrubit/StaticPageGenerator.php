@@ -154,9 +154,9 @@ class StaticPageGenerator {
 			}  else {
 				echo "File duplicated $postFile!\n";
 				$postFile = $postFolder."/".$slug."-".$postRepeatedNum .".html";
-				die();
 			}
 			$postRepeatedNum++;
+			echo $this->public ."/". $postFile.PHP_EOL;
 		} while( file_exists( $this->public ."/". $postFile) );
 
 		$postUrl = "/".$postFile;
