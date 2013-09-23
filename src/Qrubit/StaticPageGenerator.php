@@ -311,10 +311,10 @@ class StaticPageGenerator {
 			} 
 
 			if ($i == 0) {
-				$filename = "index.html";
+				$filename = "/index.html";
 				$url = "/";
 			}  else {
-				$filename = $indexPagesDir."page".$i.".html";
+				$filename = $indexPagesDir."/page".$i.".html";
 				$url = "/".$filename;
 			}
 			$offset = $i * $numPostPerPage;
