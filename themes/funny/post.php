@@ -105,7 +105,7 @@ src="//pagead2.googlesyndication.com/pagead/show_ads.js">
 <div class="row-fluid hidden-phone">
  <h2><?php echo SITE_MORE_FUN; ?></h2>
 </div>
-<?php for ($i=0; $i < 2; $i++): ?>
+<?php for ($i=0; $i < 4; $i++): ?>
   <div class="row-fluid hidden-phone"> 
     <ul class="gallery thumbs-footer unstyled inline aligncenter">
       <?php for ($j=0; $j < 4; $j++): ?>

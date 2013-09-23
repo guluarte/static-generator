@@ -1,7 +1,7 @@
 <?php
 #s3cmd put --acl-public --guess-mime-type -P 1/* s3://funnythings247.com/images/
 
-$source = "./images/";
+$source = "./thumbs/";
 
 $cmds = "";
 $dirs = scandir($source);
@@ -15,7 +15,7 @@ foreach ($dirs as $dir) {
 
 
 }
-file_put_contents("upload-dirs.sh", $cmds);
+file_put_contents("upload-dirs-images.sh", $cmds);
 echo "Done". PHP_EOL;
 
 

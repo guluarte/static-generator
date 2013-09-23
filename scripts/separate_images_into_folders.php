@@ -1,5 +1,5 @@
 <?php
-$source = "./images/";
+$source = "./thumbs/";
 $maxFilesPerDir = 1000;
 
 $cont = 0;

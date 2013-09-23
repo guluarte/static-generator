@@ -19,7 +19,7 @@ $generator->addCustomFiles('privacy.php', 'privacy.html', array(
 
 addPostFromFile("lolzbook.json", $generator);
 
-$generator->setRandomize();
+#$generator->setRandomize();
 
 
 function addPostFromFile($file, $generator) {

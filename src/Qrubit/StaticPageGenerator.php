@@ -152,12 +152,12 @@ class StaticPageGenerator {
 			if ($postRepeatedNum == 0) {
 				$postFile = $postFolder."/".$slug.".html";
 			}  else {
-				echo "File duplicated!\n";
+				echo "File duplicated $postFile!\n";
 				$postFile = $postFolder."/".$slug."-".$postRepeatedNum .".html";
+				die();
 			}
 			$postRepeatedNum++;
-
-		} while( file_exists($postFile));
+		} while( file_exists( $this->public ."/". $postFile) );
 
 		$postUrl = "/".$postFile;
 		$title = trim(htmlentities($post['title'], ENT_QUOTES, 'UTF-8'));
@@ -280,6 +280,9 @@ class StaticPageGenerator {
 		$numPost = $this->getNumPosts();
 		$numPostPerPage = 10;
 
+		$indexPagesDir = "/nav";
+		@mkdir($this->public . $indexPagesDir);
+
 		$numPages = round( ($numPost / $numPostPerPage), 0) + 1;
 		if ( ($numPost % $numPostPerPage) > 0 ) {
 			$numPages++;
@@ -292,16 +295,16 @@ class StaticPageGenerator {
 			$prevId = $i-1;
 
 			if ($i == 0) {
-				$prev['url'] = "/page".($numPages-1).".html";
-				$next['url'] = "/page".$nextId.".html";
+				$prev['url'] = $indexPagesDir."/page".($numPages-1).".html";
+				$next['url'] = $indexPagesDir."/page".$nextId.".html";
 			} 
 			if ($i == 1) {
 				$prev['url'] = "/";
-				$next['url'] = "/page".$nextId.".html";
+				$next['url'] = $indexPagesDir."/page".$nextId.".html";
 			}
 			if ($i > 1 && $i < $numPages) {
-				$prev['url'] = "/page".$prevId.".html";
-				$next['url'] = "/page".$nextId.".html";
+				$prev['url'] = $indexPagesDir."/page".$prevId.".html";
+				$next['url'] = $indexPagesDir."/page".$nextId.".html";
 			}
 			if ($i == ($numPages-1)) {
 				$next['url'] = "/";
@@ -311,7 +314,7 @@ class StaticPageGenerator {
 				$filename = "index.html";
 				$url = "/";
 			}  else {
-				$filename = "page".$i.".html";
+				$filename = $indexPagesDir."page".$i.".html";
 				$url = "/".$filename;
 			}
 			$offset = $i * $numPostPerPage;
@@ -360,9 +363,20 @@ class StaticPageGenerator {
 	public function deploy($bucket){
 		$deployCmds = "";
 		$this->closeFileListHandler();
-		$pageDirs = $this->getListDirs($this->public."/page/");
-		
+
+		#Sync home folder
+		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/* s3://".$bucket."/ --exclude='assets/' --exclude='page/' --exclude='images/' --exclude='sitemaps/' --exclude='nav/'";
+		echo $deployCmd."\n";
+		$deployCmds .= $deployCmd."\n";
+
+		#Sync assets
+		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000' ";
+		echo $deployCmd."\n";
+		$deployCmds .= $deployCmd."\n";
+
 		#Sync Pages
+		$pageDirs = $this->getListDirs($this->public."/page/");
+	
 		foreach ($pageDirs as $pageDir) {
 			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/page/".$pageDir."/* s3://".$bucket."/page/".$pageDir."/";
 			echo $deployCmd."\n";
@@ -370,23 +384,22 @@ class StaticPageGenerator {
 			#system($deployCmd);
 		}
 
-		#Sync assets
-		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000' ";
+		#Sync nav
+		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/nav/* s3://".$bucket."/nav/";
 		echo $deployCmd."\n";
 		$deployCmds .= $deployCmd."\n";
-		#system($deployCmd);
 
-		#Sync home folder
-		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/* s3://".$bucket."/ --exclude='assets/' --exclude='page/' --exclude='images/'";
+		#Sitemaps
+		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/sitemaps/* s3://".$bucket."/sitemaps/";
 		echo $deployCmd."\n";
 		$deployCmds .= $deployCmd."\n";
-		#system($deployCmd);
-
 
 		file_put_contents("./deploy.sh", $deployCmds);
 		
 	}
 	private function generateSiteMap() {
+		@mkdir($this->public .'/sitemaps');
+
 		$numUrlsPerSitemap = 50000;
 		$sitemap = '<?xml version="1.0" encoding="UTF-8"?>
 		<sitemapindex xmlns="http://www.google.com/schemas/sitemap/0.84">'.PHP_EOL;
@@ -419,8 +432,8 @@ class StaticPageGenerator {
 			} 
 		}
 
-		file_put_contents($this->public."/sitemap-".$num.".txt", $sitemap);
-		return $this->site['url']."/sitemap-".$num.".txt";
+		file_put_contents($this->public .'/sitemaps'."/sitemap-".$num.".txt", $sitemap);
+		return $this->site['url']."/sitemaps/sitemap-".$num.".txt";
 	}
 	private function getNextPosts($amount, $offset) {
 		$posts = array();
