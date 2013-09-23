@@ -42,7 +42,7 @@ function addPostFromFile($file, $generator) {
 			$generator->addPost($post);
 			$cont++;
 			if ($cont > 200) {
-				break;
+				#break;
 			}
 		}
 
