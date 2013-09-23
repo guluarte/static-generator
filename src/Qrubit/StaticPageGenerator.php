@@ -222,18 +222,19 @@ class StaticPageGenerator {
 		if ($this->randomize === true) {
 			$this->randomizePosts();
 		}
+		$totalPosts = $this->getNumPosts();
 		foreach ($this->posts as $id => $post) {
 			if (!file_exists($this->public ."/". $post['file'])) {
 			#Navigation
 				if ($id > 0) {
 					$prev = $this->posts[($id-1)];
 				} else {
-					$prev = false;
+					$prev = $this->posts[$totalPosts];
 				}
 				if (isset($this->posts[($id+1)])) {
 					$next = $this->posts[($id+1)];
 				} else {
-					$next = false;
+					$next = $this->posts[0];
 				}
 
 				$randomPost = $this->getRandomPost(50);
@@ -277,7 +278,7 @@ class StaticPageGenerator {
 			$prevId = $i-1;
 
 			if ($i == 0) {
-				$prev = false;
+				$prev = "/page".$numPages.".html";
 				$next['url'] = "/page".$nextId.".html";
 			} 
 			if ($i == 1) {
@@ -316,6 +317,7 @@ class StaticPageGenerator {
 				'random' => $randomPost,
 				'next' => $next,
 				'prev' => $prev,
+				'numPages' => $numPages,
 				);
 
 			$this->addFileToList('/'.$filename);

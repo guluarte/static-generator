@@ -2,12 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
   <meta charset="utf-8">
-  <title><?php echo $post['title']; ?></title>
-  <meta name="author" content="<?php echo $site['author']; ?>">
-  <link rel="canonical" href="<?php echo $site['url']; ?><?php echo $post['url']; ?>" />
-  <!-- Enable responsive viewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <?php if($post['url'] == '/'):?>
+  <!-- redirect here -->
+  <script>
+  var pageToGo = Math.floor((Math.random()*<?php echo $numPages; ?>)+1);
+  window.top.location.href = "<?php echo $site['url']; ?>/page" + pageToGo +".html";
+  </script>
+  <meta http-equiv="refresh" content="0;URL='<?php echo $site['url']; ?>/page<?php echo mt_rand(1,$numPages) ?>.html'" />    
+  <!-- randomin redirect end -->
+<?php endif; ?>
+<title><?php echo $post['title']; ?></title>
+<meta name="author" content="<?php echo $site['author']; ?>">
+<link rel="canonical" href="<?php echo $site['url']; ?><?php echo $post['url']; ?>" />
+<!-- Enable responsive viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
       <![endif]-->
