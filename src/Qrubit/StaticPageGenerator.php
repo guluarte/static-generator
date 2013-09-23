@@ -18,6 +18,7 @@ class StaticPageGenerator {
 	private $customFiles;
 	private $randomize = false;
 	private $lang;
+	private $postList = array();
 
 
 	public function __construct($theme, $source = './source', $public = './public', $rebuild = false) {
@@ -156,14 +157,15 @@ class StaticPageGenerator {
 			}
 			$postRepeatedNum++;
 
-		} while( isset($this->posts[$postFile]) );
+		} while( isset($this->postList[$postFile]) );
 
 		$postUrl = "/".$postFile;
 		$title = trim(htmlentities($post['title'], ENT_QUOTES, 'UTF-8'));
 		$youtubeid = (isset($post['youtubeid'])) ? $post['youtubeid'] : false;
 		$custom = (isset($post['custom'])) ? $post['custom'] : false;
 
-		$this->posts[$postFile] = array(
+		$this->postList[$postFile] = true;
+		$this->posts[] = array(
 			'title' => $title,
 			'title_encode' => urlencode($post['title']),
 			'url' => $postUrl,
@@ -231,6 +233,7 @@ class StaticPageGenerator {
 
 	public function generate() {
 		echo "Generating.\n";
+		$this->postList = array();
 		$this->getLangConstants();
 		if ($this->randomize === true) {
 			$this->randomizePosts();
