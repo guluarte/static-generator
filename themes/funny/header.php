@@ -54,10 +54,10 @@
       <meta name="twitter:card" content="photo" />
       <meta name="twitter:url" content="<?php echo $site['url']; ?><?php echo $post['url']; ?>" />
       <meta name="twitter:title" content="<?php echo $post['title']; ?>" />
-      <meta name="twitter:description" content="<?php echo $post['title']; ?> @funnythings247_com" />
+      <meta name="twitter:description" content="<?php echo $post['title']; ?> @funnythings247_" />
       <meta name="twitter:image:src" content="<?php echo $site['image_path'].$post['image']; ?>" />
-      <meta name="twitter:site" content="@funnythings247_com" />
-      <meta name="twitter:creator" content="@funnythings247_com" />
+      <meta name="twitter:site" content="@funnythings247_" />
+      <meta name="twitter:creator" content="@funnythings247_" />
       <meta name="twitter:domain" content="funnythings247.com" />
       <!-- end twitter tags -->
     <?php endif; ?>
