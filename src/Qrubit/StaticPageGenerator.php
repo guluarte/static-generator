@@ -135,7 +135,7 @@ class StaticPageGenerator {
 		$slug = preg_replace("/-+/", "-", $slug); 
 		$slug = substr($slug, 0, 50);
 		$slug = rtrim($slug, '-');
-		if (strlen($slug) == 0) {
+		if (strlen($slug) == 0 || $slug == '') {
 			return;
 		}
 		if (!isset($post['tags'])) {
