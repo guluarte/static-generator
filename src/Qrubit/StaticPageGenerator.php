@@ -153,18 +153,19 @@ class StaticPageGenerator {
 				$postFile = $postFolder."/".$slug.".html";
 			}  else {
 				echo "File duplicated $postFile!\n";
+				die();
 				$postFile = $postFolder."/".$slug."-".$postRepeatedNum .".html";
 			}
 			$postRepeatedNum++;
 			echo $this->public ."/". $postFile.PHP_EOL;
-		} while( file_exists( $this->public ."/". $postFile) );
+		} while( isset($this->posts[$postUrl]) );
 
 		$postUrl = "/".$postFile;
 		$title = trim(htmlentities($post['title'], ENT_QUOTES, 'UTF-8'));
 		$youtubeid = (isset($post['youtubeid'])) ? $post['youtubeid'] : false;
 		$custom = (isset($post['custom'])) ? $post['custom'] : false;
 
-		$this->posts[] = array(
+		$this->posts[$postUrl] = array(
 			'title' => $title,
 			'title_encode' => urlencode($post['title']),
 			'url' => $postUrl,
