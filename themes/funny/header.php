@@ -7,8 +7,7 @@
   <script>
   var pageToGo = Math.floor((Math.random()*<?php echo $numPages; ?>)+1);
   window.top.location.href = "<?php echo $site['url']; ?>/page" + pageToGo +".html";
-  </script>
-  <meta http-equiv="refresh" content="0;URL='<?php echo $site['url']; ?>/page<?php echo mt_rand(1,$numPages) ?>.html'" />    
+  </script>   
   <!-- randomin redirect end -->
 <?php endif; ?>
 <title><?php echo $post['title']; ?></title>

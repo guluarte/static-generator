@@ -278,7 +278,7 @@ class StaticPageGenerator {
 			$prevId = $i-1;
 
 			if ($i == 0) {
-				$prev = "/page".$numPages.".html";
+				$prev['url'] = "/page".($numPages-1).".html";
 				$next['url'] = "/page".$nextId.".html";
 			} 
 			if ($i == 1) {
