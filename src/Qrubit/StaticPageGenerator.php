@@ -144,7 +144,21 @@ class StaticPageGenerator {
 		$postFolder = 'page/'.substr( preg_replace('/[^A-Za-z0-9]/', '', $slug) , 0, 2);
 
 		@mkdir($this->public.'/'.$postFolder);
-		$postFile = $postFolder."/".$slug.".html";
+
+		#Avoid file overwrite
+		$postRepeatedNum = 0;
+		do {
+
+			if ($postRepeatedNum == 0) {
+				$postFile = $postFolder."/".$slug.".html";
+			}  else {
+				echo "File duplicated!\n";
+				$postFile = $postFolder."/".$slug."-".$postRepeatedNum .".html";
+			}
+			$postRepeatedNum++;
+
+		} while( file_exists($postFile));
+
 		$postUrl = "/".$postFile;
 		$title = trim(htmlentities($post['title'], ENT_QUOTES, 'UTF-8'));
 		$youtubeid = (isset($post['youtubeid'])) ? $post['youtubeid'] : false;
@@ -355,10 +369,6 @@ class StaticPageGenerator {
 			$deployCmds .= $deployCmd."\n";
 			#system($deployCmd);
 		}
-		#Sync folders inside page
-		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/page/* s3://".$bucket."/page/";
-		echo $deployCmd."\n";
-		$deployCmds .= $deployCmd."\n";
 
 		#Sync assets
 		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/assets/* s3://".$bucket."/assets/ --add-header 'Cache-Control: public, max-age=31600000' ";
