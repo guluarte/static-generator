@@ -368,7 +368,7 @@ class StaticPageGenerator {
 		$this->closeFileListHandler();
 
 		#Sync home folder
-		$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/* s3://".$bucket."/ --exclude='assets/' --exclude='page/' --exclude='images/' --exclude='sitemaps/' --exclude='nav/'";
+		$deployCmd = "s3cmd put --acl-public --guess-mime-type -P ".$this->public."/* s3://".$bucket."/ --exclude='assets/' --exclude='page/' --exclude='images/' --exclude='sitemaps/' --exclude='nav/'";
 		#echo $deployCmd."\n";
 		$deployCmds .= $deployCmd."\n";
 
