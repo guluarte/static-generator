@@ -158,14 +158,14 @@ class StaticPageGenerator {
 			}
 			$postRepeatedNum++;
 			echo $this->public ."/". $postFile.PHP_EOL;
-		} while( isset($this->posts[$postUrl]) );
+		} while( isset($this->posts[$postFile]) );
 
 		$postUrl = "/".$postFile;
 		$title = trim(htmlentities($post['title'], ENT_QUOTES, 'UTF-8'));
 		$youtubeid = (isset($post['youtubeid'])) ? $post['youtubeid'] : false;
 		$custom = (isset($post['custom'])) ? $post['custom'] : false;
 
-		$this->posts[$postUrl] = array(
+		$this->posts[$postFile] = array(
 			'title' => $title,
 			'title_encode' => urlencode($post['title']),
 			'url' => $postUrl,
