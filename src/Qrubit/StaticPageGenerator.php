@@ -153,6 +153,8 @@ class StaticPageGenerator {
 			if ($postRepeatedNum == 0) {
 				$postFile = $postFolder."/".$slug.".html";
 			}  else {
+				echo "Duplicated file\n";
+				die();
 				$postFile = $postFolder."/".$slug."-".$postRepeatedNum .".html";
 			}
 			$postRepeatedNum++;
