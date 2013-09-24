@@ -33,24 +33,57 @@ class StaticPageGenerator {
 	}
 
 	private function setup() {
+		$this->moveGitFolderToTmp();
+		
 		if ($this->rebuild) {
 			echo "Rebuilding\n";
 			$this->cleanPublicDir();
 		}
-		
+		$this->removeIndexFiles();
 		@mkdir($this->public);
 		@mkdir($this->public."/page");
 		$copyCmd = "cp ".$this->source."/* ".$this->public."/ -r -u";
 		system($copyCmd);
-	}
 
+		$this->moveGitToPublic();
+	}
+	
+	private function moveGitFolderToTmp() {
+		if (is_dir($this->public) && isset($this->public)) {
+			$mvCmd = "mv ".$this->public."/.git ./tmp/";
+			system($mvCmd);
+		}
+	}
+	private function moveGitToPublic() {
+		if (is_dir($this->public) && isset($this->public)) {
+			$mvCmd = "mv ./tmp/.git ".$this->public."/.git";
+			system($mvCmd);
+		}		
+	}
 	private function cleanPublicDir() {
 		if (is_dir($this->public) && isset($this->public)) {
 			$rmCmd = "rm ".$this->public."/* -fr";
 			system($rmCmd);
 		}
 	}
-
+	private function removeIndexFiles() {
+		if (is_dir($this->public) && isset($this->public)) {
+			$rmCmd = " rm ".$this->public."/nav/ -fr";
+			system($rmCmd);
+			$rmCmd = " rm ".$this->public."/sitemaps/ -fr";
+			system($rmCmd);
+			$rmCmd = " rm ".$this->public."/*.html -f";
+			system($rmCmd);
+			$rmCmd = " rm ".$this->public."/sitemap.xml -f";
+			system($rmCmd);
+			$rmCmd = " rm ".$this->public."/robots.txt -f";
+			system($rmCmd);
+			$rmCmd = " rm ".$this->public."/*.posts -f";
+			system($rmCmd);
+			$rmCmd = " rm ".$this->public."/*.filelist -f";
+			system($rmCmd);
+		}
+	}
 	public function addCustomFiles($themeFile, $filename, $meta) {
 		$this->customFiles[] = array(
 			'themeFile' => "./themes/".$this->theme."/".$themeFile,
@@ -190,8 +223,15 @@ class StaticPageGenerator {
 
 	}
 	private function createFile($file, $themeFile, $vars) {
-		$renderResult = $this->renderFile($themeFile, $vars);
-		file_put_contents($this->public ."/". $file, $renderResult);
+		/*
+		Only generate the new file if the older does not exits.
+		If the file exists that means rebuild is set to false.
+		 */
+		if (!file_exists($this->public ."/". $file) ) {
+			$renderResult = $this->renderFile($themeFile, $vars);
+			file_put_contents($this->public ."/". $file, $renderResult);
+		}
+		
 	}
 	private function getLastestPosts() {
 		if ( is_array($this->lastestPosts) ) {
@@ -379,7 +419,7 @@ class StaticPageGenerator {
 
 		#Sync Pages
 		$pageDirs = $this->getListDirs($this->public."/page/");
-	
+
 		foreach ($pageDirs as $pageDir) {
 			$deployCmd = "s3cmd sync --acl-public --guess-mime-type -P ".$this->public."/page/".$pageDir."/* s3://".$bucket."/page/".$pageDir."/";
 			#echo $deployCmd."\n";
