@@ -12,6 +12,10 @@
         <?php if($post['youtubeid']): ?>
          <iframe width="640" height="480" src="//www.youtube.com/embed/<?php echo $post['youtubeid']; ?>" frameborder="0" allowfullscreen></iframe>
       <?php endif; ?>
+
+      <?php if($post['content']): ?>
+      <p><?php echo $post['content']; ?></p>
+    <?php endif; ?>
      
     </div>
 
