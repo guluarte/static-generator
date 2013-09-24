@@ -155,7 +155,7 @@ class StaticPageGenerator {
 
 	}
 	public function isValidPost($post) {
-		if (isset($post['title']) && isset($post['image']) && isset($post['tags']) && isset($post['category'])) {
+		if (isset($post['title']) && isset($post['image'])) {
 			return true;
 		}
 	}
@@ -197,6 +197,7 @@ class StaticPageGenerator {
 
 		$postUrl = "/".$postFile;
 		$title = trim(htmlentities($post['title'], ENT_QUOTES, 'UTF-8'));
+		$content = trim(htmlentities($post['content'], ENT_QUOTES, 'UTF-8'));
 		$youtubeid = (isset($post['youtubeid'])) ? $post['youtubeid'] : false;
 		$custom = (isset($post['custom'])) ? $post['custom'] : false;
 
@@ -204,6 +205,7 @@ class StaticPageGenerator {
 		$this->posts[] = array(
 			'title' => $title,
 			'title_encode' => urlencode($post['title']),
+			'content' => $content,
 			'url' => $postUrl,
 			'url_encode' => urlencode( $postUrl ),
 			'image' => $post['image'],
@@ -383,7 +385,7 @@ class StaticPageGenerator {
 				);
 
 			$this->addFileToList('/'.$filename);
-			$this->urlList[] = '/'.$filename;
+			$this->urlList[] = $filename;
 
 
 			$this->createFile($filename, $this->indexFile, $vars);

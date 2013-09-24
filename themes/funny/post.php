@@ -6,28 +6,28 @@
       <!--Body content-->
       <article class="content addrelative aligncenter">
         <div class="aligncenter postimage">
-          <?php if( $post['image'] ): ?>
+          <?php if( $post['image'] && !$post['youtubeid'] ): ?>
           <img src="<?php echo $site['url']; ?>/images/<?php echo $post['image']; ?>" alt="<?php echo $post['title']; ?>" title="<?php echo $post['title']; ?>"/>
         <?php endif; ?>
         <?php if($post['youtubeid']): ?>
-         <iframe width="640" height="480" src="//www.youtube.com/embed/<?php echo $post['youtubeid']; ?>" frameborder="0" allowfullscreen></iframe>
+        <iframe width="640" height="480" src="http://www.youtube.com/embed/<?php echo $post['youtubeid']; ?>" frameborder="0" allowfullscreen></iframe>
       <?php endif; ?>
 
       <?php if($post['content']): ?>
-      <p><?php echo $post['content']; ?></p>
+      <p class="pull-left"><?php echo $post['content']; ?></p>
     <?php endif; ?>
-     
-    </div>
 
-    <?php include(__DIR__."/share.php"); ?>
-  </article>
-  <nav class="aligncenter">
-    <?php if ($prev): ?>
-    <a id="prev" class="btn btn-primary btn-large" href="<?php echo $site['url']; ?><?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>" rel="prev">&larr; <?php echo SITE_PREV; ?></a>
-  <?php endif; ?>
-  <?php $randomPost = current($random); ?>
-  <a id="rand" class="btn btn-primary btn-large" href="<?php echo $site['url']; ?><?php echo $randomPost['url']; ?>" title="<?php echo $randomPost['title']; ?>"><?php echo SITE_RANDOM; ?></a>
-  <?php if ($next): ?>
+  </div>
+
+  <?php include(__DIR__."/share.php"); ?>
+</article>
+<nav class="aligncenter">
+  <?php if ($prev): ?>
+  <a id="prev" class="btn btn-primary btn-large" href="<?php echo $site['url']; ?><?php echo $prev['url']; ?>" title="<?php echo $prev['title']; ?>" rel="prev">&larr; <?php echo SITE_PREV; ?></a>
+<?php endif; ?>
+<?php $randomPost = current($random); ?>
+<a id="rand" class="btn btn-primary btn-large" href="<?php echo $site['url']; ?><?php echo $randomPost['url']; ?>" title="<?php echo $randomPost['title']; ?>"><?php echo SITE_RANDOM; ?></a>
+<?php if ($next): ?>
   <a id="next" class="btn btn-primary btn-large" href="<?php echo $site['url']; ?><?php echo $next['url']; ?>" title="<?php echo $next['title']; ?>" rel="next"><?php echo SITE_NEXT; ?> &rarr;</a>
 <?php endif; ?>
 
