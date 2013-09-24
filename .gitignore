@@ -3,3 +3,4 @@ public/
 deploy.sh
 *.sh
 Thumbs.db
+tmp/*
