@@ -1,13 +1,13 @@
 <?php
-require("bootstrap.php");
 
 $theme = "funny";
-$source = "./funnythings247.com";
-$public = "./funnythings247.com";
+$source = "/funnythings247.com";
+$public = "/funnythings247.com";
 $bucket = "funnythings247.com";
 
+$rebuild = true;
 
-$generator = new Qrubit\StaticPageGenerator('funny', $source, $public, true);
+$generator = new Qrubit\StaticPageGenerator('funny', $source, $public, $rebuild);
 $generator->setSiteAuthor("Funny Things");
 $generator->setSiteName("Funny Things 24/7");
 $generator->setSiteUrl("http://funnythings247.com");

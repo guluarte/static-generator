@@ -28,7 +28,7 @@ class StaticPageGenerator {
 		$this->rebuild = $rebuild;
 		$this->site['version'] = time();
 		$this->source = "./source/".rtrim($source, '/');
-		$this->public = "/public/".rtrim($public, '/');
+		$this->public = "./public/".rtrim($public, '/');
 		$this->setup();
 	}
 
