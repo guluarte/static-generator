@@ -27,12 +27,14 @@ class StaticPageGenerator {
 		$this->indexFile = "./themes/".$this->theme."/index.php";
 		$this->rebuild = $rebuild;
 		$this->site['version'] = time();
-		$this->source = rtrim($source, '/');
-		$this->public = rtrim($public, '/');
+		$this->source = "./source/".rtrim($source, '/');
+		$this->public = "/public/".rtrim($public, '/');
 		$this->setup();
 	}
 
 	private function setup() {
+
+
 		$this->moveGitFolderToTmp();
 		
 		if ($this->rebuild) {
@@ -47,9 +49,9 @@ class StaticPageGenerator {
 
 		$this->moveGitToPublic();
 	}
-	
+
 	private function moveGitFolderToTmp() {
-		if (is_dir($this->public) && isset($this->public)) {
+		if (is_dir($this->public."/.git") && isset($this->public)) {
 			$mvCmd = "mv ".$this->public."/.git ./tmp/";
 			system($mvCmd);
 		}

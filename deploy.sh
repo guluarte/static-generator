@@ -1,3 +1,5 @@
+s3cmd put --acl-public --guess-mime-type -P ./public/* s3://funnythings247.com/ --exclude='assets/' --exclude='page/' --exclude='images/' --exclude='sitemaps/' --exclude='nav/'
+s3cmd sync --acl-public --guess-mime-type -P ./public/assets/* s3://funnythings247.com/assets/ --add-header 'Cache-Control: public, max-age=31600000' 
 s3cmd sync --acl-public --guess-mime-type -P ./public/page/ab/* s3://funnythings247.com/page/ab/
 s3cmd sync --acl-public --guess-mime-type -P ./public/page/ac/* s3://funnythings247.com/page/ac/
 s3cmd sync --acl-public --guess-mime-type -P ./public/page/ad/* s3://funnythings247.com/page/ad/
@@ -89,6 +91,5 @@ s3cmd sync --acl-public --guess-mime-type -P ./public/page/ya/* s3://funnythings
 s3cmd sync --acl-public --guess-mime-type -P ./public/page/ye/* s3://funnythings247.com/page/ye/
 s3cmd sync --acl-public --guess-mime-type -P ./public/page/yo/* s3://funnythings247.com/page/yo/
 s3cmd sync --acl-public --guess-mime-type -P ./public/page/zo/* s3://funnythings247.com/page/zo/
-s3cmd sync --acl-public --guess-mime-type -P ./public/page/* s3://funnythings247.com/page/
-s3cmd sync --acl-public --guess-mime-type -P ./public/assets/* s3://funnythings247.com/assets/ --add-header 'Cache-Control: public, max-age=31600000' 
-s3cmd sync --acl-public --guess-mime-type -P ./public/* s3://funnythings247.com/ --exclude='assets/' --exclude='page/' --exclude='images/'
+s3cmd sync --acl-public --guess-mime-type -P ./public/nav/* s3://funnythings247.com/nav/
+s3cmd sync --acl-public --guess-mime-type -P ./public/sitemaps/* s3://funnythings247.com/sitemaps/

@@ -2,8 +2,8 @@
 require("bootstrap.php");
 
 $theme = "funny";
-$source = "./source";
-$public = "./public";
+$source = "./funnythings247.com";
+$public = "./funnythings247.com";
 $bucket = "funnythings247.com";
 
 
@@ -42,7 +42,7 @@ function addPostFromFile($file, $generator) {
 			$generator->addPost($post);
 			$cont++;
 			if ($cont > 200) {
-				#break;
+				break;
 			}
 		}
 
